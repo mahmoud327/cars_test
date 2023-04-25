@@ -48,6 +48,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+        $this->mapUserRoutes();
+
     }
 
     /**
@@ -60,5 +62,13 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
+    }
+
+    protected function mapUserRoutes()
+    {
+        Route::prefix('api/v1/user/')
+        //  ->middleware()
+            // ->namespace($this->namespace.'\Api\Customer')
+            ->group(base_path('routes/api/user.php'));
     }
 }

@@ -17,7 +17,7 @@ class LangMiddleware
 
     public function handle(Request $request, Closure $next)
     {
-        $locale = ($request->localization) ? $request->localization : 'ar';
+        $locale = ($request->hasHeader('x-localization')) ? $request->header('x-localization') : 'ar' ;
 
         app()->setlocale($locale);
 

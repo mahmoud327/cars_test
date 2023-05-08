@@ -41,13 +41,5 @@ class CityController extends Controller
 
         return JsonResponse::json('ok', ['data' => CityResource::collection($cities)]);
     }
-    public function show($id)
-    {
 
-        $new = TournamentNew::query()
-            ->with(['category', 'medias'])
-            ->findOrfail($id);
-
-        return JsonResponse::json('ok', ['data' => NewResource::make($new)]);;
-    }
 }

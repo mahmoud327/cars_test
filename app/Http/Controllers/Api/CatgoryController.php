@@ -35,8 +35,7 @@ class CatgoryController extends Controller
         $categories = Category::latest()
             ->paginate(10);
 
-            return JsonResponse::json('ok', ['data' => CategoryResource::collection($categories)]);
-
+        return JsonResponse::json('ok', ['data' => CategoryResource::collection($categories)]);
     }
 
     /**
@@ -50,7 +49,6 @@ class CatgoryController extends Controller
 
         $post = $this->postService->createPost($request->all());
         return sendJsonResponse([], 'post add sucessfully');
-
     }
 
     public function update(Request $request, Post $post)
@@ -70,5 +68,4 @@ class CatgoryController extends Controller
 
         return back()->with('status', "deleted successfully");
     }
-
 }

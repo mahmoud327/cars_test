@@ -14,11 +14,11 @@ class Brand extends Model
 
     public $timestamps = true;
     protected $translationForeignKey = "brand_id";
-    public $translatedAttributes = ['name'];
+    public $translatedAttributes = ['title'];
     public $translationModel = 'App\Models\Translation\Brand';
 
 
     protected $fillable = [
-        'name',
+        'title',
     ];
 }

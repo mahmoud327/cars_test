@@ -14,16 +14,16 @@ class City extends Model
 
     public $timestamps = true;
     protected $translationForeignKey = "city_id";
-    public $translatedAttributes = ['name'];
+    public $translatedAttributes = ['title'];
     public $translationModel = 'App\Models\Translation\City';
 
 
     protected $fillable = [
-        'name',
+        'title',
 
 
     ];
 
 
- 
+
 }

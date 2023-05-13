@@ -1,17 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\NewController;
-use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\TournamentNewController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -22,41 +11,69 @@ use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
- */
+*/
 
 Route::redirect('/', 'admin/login-page');
 
 Auth::routes();
 
-Route::group([
-    'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
-], function () {
+Route::get('/home', function () {
+    return view('dashboard.index');
+})->name('dashboard.index');
 
-    Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
-        Route::get('login-page', 'AuthController@loginPage')->name('admin.login.page');
-        Route::post('login', 'AuthController@login')->name('admin.login');
-        Route::get('logout', 'AuthController@logout')->name('admin.logout');
+// //login
+// Route::get('/login', function () {
+//     return view('dashboard.login');
+// });
+// //users << index
+// Route::get('/users', function () {
+//     return view('dashboard.users.index');
+// });
 
-        Route::group(['middleware' => ['auth:admins']], function () {
-            Route::get('home', 'HomeController@index')->name('admin.home');
+// // users << create
+// Route::get('/users/create', function () {
+//     return view('dashboard.users.create');
+// });
 
-            //route-for-services
-            Route::resource('roles', RoleController::class);
+// // users << edit
+
+// Route::get('/users/edit', function () {
+//     return view('dashboard.users.edit');
+// });
+
+// // users << show
+
+// Route::get('/users/show', function () {
+//     return view('dashboard.users.show');
+// });
 
 
-            //route-for-services
-            Route::resource('admins', AdminController::class);
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('login-page', 'AuthController@loginPage')->name('admin.login.page');
+    Route::post('login', 'AuthController@login')->name('admin.login');
+    Route::get('logout', 'AuthController@logout')->name('admin.logout');
 
-            Route::resource('posts', PostController::class);
-            Route::post('posts-image', [PostController::class,'uploadPostImage'])->name('posts.images.store');
+    Route::group(['middleware' => ['auth:admins']], function () {
+        Route::get('home', 'HomeController@index')->name('admin.home');
 
-            Route::resource('news', NewController::class);
-            Route::resource('tournament-news', TournamentNewController::class);
-            Route::post('tournament-image', [NewController::class,'uploadNewImage'])->name('tournament-news.images.store');
-            Route::post('news-image', [NewController::class,'uploadNewImage'])->name('news.images.store');
+        //route-for-services
+        Route::resource('roles', RoleController::class);
 
-            Route::resource('categories', CategoryController::class);
-        });
+
+        //route-for-services
+        Route::resource('admins', AdminController::class);
+
+        Route::resource('posts', PostController::class);
+        Route::resource('banners', BannerController::class);
+        Route::resource('sports-woman', SportPostController::class);
+
+        Route::post('posts-image', [PostController::class, 'uploadPostImage'])->name('posts.images.store');
+
+        Route::resource('news', NewController::class);
+        Route::resource('tournament-news', TournamentNewController::class);
+        Route::post('tournament-image', [NewController::class, 'uploadNewImage'])->name('tournament-news.images.store');
+        Route::post('news-image', [NewController::class, 'uploadNewImage'])->name('news.images.store');
+
+        Route::resource('categories', CategoryController::class);
     });
 });

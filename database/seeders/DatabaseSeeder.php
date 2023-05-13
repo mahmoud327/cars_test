@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\City;
@@ -20,50 +21,59 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $brand = Brand::create([
-            'id' => 1
-        ]);
+        // $brand = Brand::create([
+        //     'id' => 1
+        // ]);
 
-        TranslationBrand::create([
-            'title' => 'BMW',
-            'locale' => 'en',
-            'brand_id' => $brand->id
-        ]);
-        TranslationBrand::create([
-            'title' => 'بى ام دابيو',
-            'locale' => 'ar',
-            'brand_id' => $brand->id
-        ]);
+        // TranslationBrand::create([
+        //     'title' => 'BMW',
+        //     'locale' => 'en',
+        //     'brand_id' => $brand->id
+        // ]);
+        // TranslationBrand::create([
+        //     'title' => 'بى ام دابيو',
+        //     'locale' => 'ar',
+        //     'brand_id' => $brand->id
+        // ]);
 
 
-        $city = City::create([
-            'id' => 1
-        ]);
+        // $city = City::create([
+        //     'id' => 1
+        // ]);
 
-        TranslationCity::create([
-            'title' => 'مدينه نصر',
-            'locale' => 'ar',
-            'city_id' => $city->id
-        ]);
-        TranslationCity::create([
-            'title' => 'nase city',
-            'locale' => 'en',
-            'city_id' => $city->id
-        ]);
+        // TranslationCity::create([
+        //     'title' => 'مدينه نصر',
+        //     'locale' => 'ar',
+        //     'city_id' => $city->id
+        // ]);
+        // TranslationCity::create([
+        //     'title' => 'nase city',
+        //     'locale' => 'en',
+        //     'city_id' => $city->id
+        // ]);
 
-        $category = Category::create([
-            'id' => 1
-        ]);
+        // $category = Category::create([
+        //     'id' => 1
+        // ]);
 
-        TranslationCategory::create([
-            'title' => 'cars',
-            'locale' => 'en',
-            'category_id' => $category->id
-        ]);
-        TranslationCategory::create([
-            'title' => 'العربيات',
-            'locale' => 'cars',
-            'category_id' => $category->id
-        ]);
+        // TranslationCategory::create([
+        //     'title' => 'cars',
+        //     'locale' => 'en',
+        //     'category_id' => $category->id
+        // ]);
+        // TranslationCategory::create([
+        //     'title' => 'العربيات',
+        //     'locale' => 'cars',
+        //     'category_id' => $category->id
+        // ]);
+
+        if(!Admin::count()) {
+            Admin::create([
+                'name' => 'Super Admin',
+                'email' => 'superadmin@mqa.com',
+                'password' => bcrypt('123456789'),
+            ]);
+        }
+
     }
 }

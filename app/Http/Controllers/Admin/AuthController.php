@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     public function loginPage()
     {
-        return view('admin.signin');
+        return view('dashboard.login');
     }
 
     public function login(Request $request)
@@ -21,25 +21,19 @@ class AuthController extends Controller
         ], [
             'email.required' => 'The email faild is required.',
             'email.string' => 'The email faild must be string.',
-            'email.email' => 'The email faild must be email.',
-            'email.exists' => 'The your email is incorrect.',
-            'password.required' => 'The password faild is required.',
-            'password.string' => 'The password faild must be string.',
-            'password.min' => 'The password faild must be at leates 6 letter.',
         ]);
 
         if (!Auth::guard('admins')->attempt($attr)) {
             return redirect()->route('admin.login.page')
                 ->withErrors(['errors' => 'The password is incorrect.']);
         }
-        return redirect()->route('admin.home');
+        return redirect()->route('dashboard.index');
     }
 
     public function logout()
     {
 
-        auth()->guard('admin')->logout();
+        auth()->guard('admins')->logout();
         return redirect()->route('admin.login.page');
-
     }
 }

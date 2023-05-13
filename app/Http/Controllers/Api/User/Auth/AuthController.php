@@ -25,7 +25,7 @@ class AuthController extends Controller
         // $user->notify(new EmailVerified($user ->pin_code));
 
 
-        return sendJsonResponse([], 'تم ارسال الكود بنجاح ');
+        return JsonResponse::json('ok', ['data' => UserResource::make($user)]);
     }
 
     public function login(AuthRequest $request)
@@ -37,12 +37,8 @@ class AuthController extends Controller
             return sendJsonError('Emailv or Password not correct', 401);
         }
         $user = request()->user();
-        if ($user->email_verified_at == null) {
 
-            return sendJsonError('Please verify your account', 200, [
-                'type' => 'verify_code'
-            ]);
-        }
+
 
         return JsonResponse::json('ok', ['data' => UserResource::make($user)]);
     }

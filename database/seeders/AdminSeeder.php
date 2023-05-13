@@ -21,14 +21,14 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        // if(!Admin::count()) {
-        //     Admin::create([
-        //         'name' => 'Super Admin',
-        //         'email' => 'superadmin@mqa.com',
-        //         'password' => '12345678',
-        //     ]);
-        // }
+        if(!Admin::count()) {
+            Admin::create([
+                'name' => 'Super Admin',
+                'email' => 'superadmin@mqa.com',
+                'password' => '12345678',
+            ]);
+        }
 
-    
+
     }
 }

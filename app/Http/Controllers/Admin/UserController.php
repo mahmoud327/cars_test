@@ -81,7 +81,7 @@ class UserController extends Controller
         $admin = User::create($request->all());
 
 
-        return route(redirect('users.index'));
+        return redirect(route('users.index'));
     }
 
 

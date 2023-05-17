@@ -50,6 +50,21 @@
 
                         </div>
 
+                        <div class="mb-3">
+
+                            <label class="form-label" for="bs-validation-bio"> choose city </label>
+                            <select class="form-control" required name="city_id">
+                                @foreach ($cities as $city)
+                                    <option value="{{ $city->id }}"  @if($city->id ==$company->city_id) selected @endif>>
+                                        {{ $city->title }}
+
+                                    </option>
+                                @endforeach
+                            </select>
+
+
+                        </div>
+
                         <div class="col-6">
                             <label class="form-label" for="bs-validation-password">Company Logo</label>
                             <div class="input-group input-group-merge">

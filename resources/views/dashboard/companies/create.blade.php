@@ -4,7 +4,7 @@
 
     <div class="col-md">
         <div class="card">
-          
+
             <form action="{{ route('companies.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
@@ -45,6 +45,20 @@
 
 
                         </div>
+                        <div class="mb-3">
+
+                            <label class="form-label" for="bs-validation-bio"> choose city </label>
+                            <select class="form-control" required name="city_id">
+                                @foreach ($cities as $city)
+                                    <option value="{{ $city->id }}">
+                                        {{ $city->title }}
+
+                                    </option>
+                                @endforeach
+                            </select>
+
+
+                        </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="bs-validation-bio">Address</label>
@@ -58,20 +72,7 @@
 
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label" for="bs-validation-bio">city name </label>
-                            <input type="text" class="form-control" id="bs-validation-name" name="city"
-                                placeholder="Enter city" required />
 
-
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="bs-validation-bio">country name </label>
-                            <input type="text" class="form-control" id="bs-validation-name" name="country"
-                                placeholder="enter  country" required />
-
-
-                        </div>
 
                         <div class="row">
                             <div class="col-12">

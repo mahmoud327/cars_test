@@ -25,12 +25,16 @@ class Company extends Model
        'image',
        'phone',
        'address',
-       'email'
+       'email',
+       'city_id'
     ];
 
 
     public function user(){
         return $this->belongsTo('App\Models\User','user_id');
+    }
+    public function city(){
+        return $this->belongsTo('App\Models\City','city_id');
     }
 
     /*

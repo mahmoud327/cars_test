@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MarketerCode;
 use App\Models\Admin;
+use App\Models\City;
 use App\Models\Company;
 use App\Models\User;
 use App\Traits\ImageTrait;
@@ -46,7 +47,11 @@ class CompanyController extends Controller
             ->latest()
             ->get();
 
-        return view('dashboard.companies.create', compact('users'));
+        $cities = City::query()
+            ->latest()
+            ->get();
+
+        return view('dashboard.companies.create', compact('users','cities'));
     }
 
     public function store(Request $request)
@@ -87,7 +92,11 @@ class CompanyController extends Controller
             ->latest()
             ->get();
 
-        return view('dashboard.companies.edit', compact('company', 'users'));
+            $cities = City::query()
+            ->latest()
+            ->get();
+
+        return view('dashboard.companies.edit', compact('company', 'users','cities'));
     }
 
     // to update an account

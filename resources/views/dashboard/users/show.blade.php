@@ -44,21 +44,21 @@
 
                                 <li class="mb-2 pt-1">
                                     <span class="fw-semibold me-1">Contact:</span>
-                                    <span></span>
+                                    <span>{{ $user->phone }}</span>
                                 </li>
-                                <li class="mb-2 pt-1">
+                                {{-- <li class="mb-2 pt-1">
                                     <span class="fw-semibold me-1">Languages:</span>
                                     <span>English</span>
-                                </li>
-                                <li class="mb-2 pt-1">
+                                </li> --}}
+                                {{-- <li class="mb-2 pt-1">
                                     <span class="fw-semibold me-1">Address:</span>
                                     <span></span>
-                                </li>
-                                <li class="mb-2 pt-1">
+                                </li> --}}
+                                {{-- <li class="mb-2 pt-1">
                                     <span class="fw-semibold me-1">Buy Plan:</span>
                                     <span class="badge bg-label-success">Yes</span>
 
-                                </li>
+                                </li> --}}
                                 <li class="mb-2 pt-1">
                                     <label class="switch switch-square">
                                         <input type="checkbox" checked onclick="confirmStatus(this)" id="status"
@@ -77,6 +77,7 @@
                             <div class="d-flex justify-content-center">
                                 <a href="#" class="btn btn-primary me-3" data-bs-target="#editUser"
                                     data-bs-toggle="modal">Edit</a>
+                                    
                                 <a href="javascript:;" onclick="confirmDelete(this)" id="" data-column="userId"
                                     data-delete-path="Delete/deleteCompany" data-delete=""
                                     class="btn btn-label-danger suspend-user">Delete</a>

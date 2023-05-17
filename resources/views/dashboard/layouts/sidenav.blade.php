@@ -85,13 +85,13 @@
             <span class="menu-header-text">User &amp; Companies</span>
         </li>
         <li class="menu-item">
-            <a href="" class="menu-link">
+            <a href="{{ route('users.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-user"></i>
                 <div>Users</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="" class="menu-link">
+            <a href="{{ route('companies.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-users"></i>
                 <div>Companies</div>
             </a>

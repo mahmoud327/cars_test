@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +28,10 @@ Route::get('/home', function () {
 //     return view('dashboard.login');
 // });
 // //users << index
-// Route::get('/users', function () {
-//     return view('dashboard.users.index');
-// });
+
+
+Route::resource('users', UserController::class);
+Route::resource('companies', CompanyController::class);
 
 // // users << create
 // Route::get('/users/create', function () {

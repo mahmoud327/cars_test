@@ -4,31 +4,34 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Company extends Model
 {
-    use \Astrotomic\Translatable\Translatable;
 
 
-    protected $table = 'posts';
+    protected $table = 'companies';
     protected $appends = [
         'image_path',
     ];
 
     public $timestamps = true;
-    protected $translationForeignKey = "post_id";
-    public $translatedAttributes = ['title', 'desc'];
-    public $translationModel = 'App\Models\Translation\Post';
+
 
 
     protected $fillable = [
-       'title',
-       'des',
-       'type',
-       'category_id',
+       'name',
+       'city',
+       'country',
+       'user_id',
        'image',
-       'type_post'
+       'phone',
+       'address',
+       'email'
     ];
 
+
+    public function user(){
+        return $this->belongsTo('App\Models\User','user_id');
+    }
 
     /*
      * ----------------------------------------------------------------- *
@@ -41,7 +44,7 @@ class Post extends Model
 
      public function getImagePathAttribute()
      {
-         return $this->image ? asset('uploads/posts/' . $this->image) : asset('uploads/default.jpeg');
+         return $this->image ? asset('uploads/companies/' .$this->image) : asset('uploads/default.jpeg');
 
      }
 

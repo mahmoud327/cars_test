@@ -75,6 +75,7 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+
     <style>
         th[colspan="4"] {
             text-align: center;
@@ -82,6 +83,9 @@
 
         th[colspan="3"] {
             text-align: center;
+        }
+        .dt-buttons .add-new {
+            display: none !important;
         }
     </style>
 

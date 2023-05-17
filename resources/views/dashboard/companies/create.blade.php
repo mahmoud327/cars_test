@@ -21,7 +21,7 @@
 
 
                         <div class="mb-3">
-                            <label class="form-label" for="bs-validation-upload-file"></label>
+                            <label class="form-label" for="bs-validation-upload-file">Image</label>
                             <input type="file" class="form-control" name="image" id="bs-validation-upload-file"
                                 required />
                         </div>
@@ -67,6 +67,13 @@
                         <div class="mb-3">
                             <label class="form-label" for="bs-validation-bio">Phone number</label>
                             <input type="text" class="form-control" id="bs-validation-name" name="phone"
+                                placeholder="enter phone" required />
+
+
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="bs-validation-bio">email</label>
+                            <input type="text" class="form-control" id="bs-validation-name" name="email"
                                 placeholder="enter phone" required />
 
 

@@ -8,6 +8,10 @@ trait ImageTrait
 {
     public function uploadImage($path, $file, $old = null)
     {
+        //checkmake directory
+        if (!file_exists(public_path($path))) {
+            mkdir(public_path($path), 0777, true);
+        }
 
 
         if ($old && file_exists($old)) {

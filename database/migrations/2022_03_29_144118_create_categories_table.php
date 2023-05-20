@@ -15,6 +15,10 @@ return new class  extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->integer("parent_id")->default(0);
+            $table->enum('type', ['car', 'model','make'])->default('car');
+            $table->tinyinteger('status')->default(1);
+            $table->longtext('image')->nullable();
             $table->timestamps();
         });
     }

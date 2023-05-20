@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('brands_translations', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('locale')->index();
-            $table->string('title');
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
 

@@ -3,20 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Astrotomic\Translatable\Contracts\Translatable as ContractsTranslatable;
+use Astrotomic\Translatable\Translatable;
 
-class Category extends Model
+class Category extends Model implements ContractsTranslatable
 {
-    use \Astrotomic\Translatable\Translatable;
+    use Translatable;
 
 
     protected $table = 'categories';
-    protected $fillable =['status'];
+   protected $guarded = ['id'];
 
     public $timestamps = true;
-    protected $translationForeignKey = "category_id";
-    public $translatedAttributes = ['title'];
-    public $translationModel = 'App\Models\Translation\Category';
+    public $translatedAttributes = ['name'];
 
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
 
 
 

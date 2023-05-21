@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FeatureListTranslation extends Model
 {
     use HasFactory;
+    protected $table = 'feature_list_translations';
+    public $timestamps = false;
+    protected $fillable = ['name'];
 }

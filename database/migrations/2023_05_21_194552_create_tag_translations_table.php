@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('features', function (Blueprint $table) {
+        Schema::create('tag_translations', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('status')->default(1);
+            $table->foreignId('tag_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->string('locale')->index();
+            $table->unique(['tag_id', 'locale']);
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('features');
+        Schema::dropIfExists('tag_translations');
     }
 };

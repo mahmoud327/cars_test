@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('feature_lists', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('feature_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Feature;
-use App\Traits\ImageTrait;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class FeatureController extends Controller
-{
-    protected $model;
-    protected $viewsDomain = 'dashboard.features.';
+class TagController extends Controller
+{  protected $model;
+    protected $viewsDomain = 'dashboard.tags.';
     protected $type;
 
-    use ImageTrait;
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +18,7 @@ class FeatureController extends Controller
      */
     public function __construct()
     {
-        $this->model = new Feature();
+        $this->model = new Tag();
     }
     private function view($view, $params = [])
     {
@@ -52,25 +49,25 @@ class FeatureController extends Controller
 
         $category = $this->model->create($request->all());
 
-        return redirect()->route('features.index')->with('status', "add successfully");
+        return redirect()->route('tags.index')->with('status', "add successfully");
 
     }
-    public function edit(Feature $feature)
+    public function edit(Tag $tag)
     {
-        return $this->view('edit', compact('feature'));
+        return $this->view('edit', compact('tag'));
     }
 
-    public function update(Request $request, Feature $feature)
+    public function update(Request $request, Tag $tag)
     {
 
-        $feature->update($request->all());
+        $tag->update($request->all());
 
-        return redirect()->route('features.index')->with('status', "updated successfully");
+        return redirect()->route('tags.index')->with('status', "updated successfully");
     }
 
-    public function destroy(Feature $feature)
+    public function destroy(Tag $tag)
     {
         $feature->delete();
-        return redirect()->route('categories.index')->with('status', "deleted successfully");
+        return redirect()->route('tags.index')->with('status', "deleted successfully");
     }
 }

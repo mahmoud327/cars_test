@@ -112,6 +112,21 @@
                 <div>Makes</div>
             </a>
         </li>
+          <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Features &amp; Tags</span>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('features.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-user"></i>
+                <div>Features</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('tags.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-users"></i>
+                <div>Tags</div>
+            </a>
+        </li>
 
 
         <li class="menu-header small text-uppercase">

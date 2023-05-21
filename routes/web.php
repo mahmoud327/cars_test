@@ -36,6 +36,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::resource('users', UserController::class);
         Route::resource('companies', CompanyController::class);
+        Route::get('company/{id}', [CompanyController::class,'isActive'])
+        ->name('company.is-active');
+
+
         Route::resource('categories', CategoryController::class);
         Route::resource('features', FeatureController::class);
         Route::resource('feature.listings', FeatureListingController::class);

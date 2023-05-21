@@ -23,6 +23,7 @@ class FeatureController extends Controller
     {
         $this->model = new Feature();
     }
+    
     private function view($view, $params = [])
     {
         return view($this->viewsDomain . $view, $params);

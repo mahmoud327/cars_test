@@ -26,7 +26,8 @@ class Company extends Model
        'phone',
        'address',
        'email',
-       'city_id'
+       'city_id',
+       'is_active'
     ];
 
 

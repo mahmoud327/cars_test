@@ -1,13 +1,18 @@
 @extends('dashboard.layouts.master')
 @section('title', 'users')
+@push('style')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+@endpush
+
 @section('content')
 
     <div class="card">
         <div class="" style="margin-left:1100px">
-                <a href="{{ route('users.create') }}" class="dt-button add-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0"
-                        type="button" fdprocessedid="dvqh2r"><span><i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span
-                                class="d-none d-sm-inline-block"></span></span>
-                </a>
+            <a href="{{ route('users.create') }}" class="dt-button add-new btn btn-primary" tabindex="0"
+                aria-controls="DataTables_Table_0" type="button" fdprocessedid="dvqh2r"><span><i
+                        class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block"></span></span>
+            </a>
         </div>
         <div class="card-datatable table-responsive pt-0">
             <table class="datatables-companies table">
@@ -35,20 +40,29 @@
                             </td>
                             <td>
 
-                                <button type="button" onclick="confirmStatus(this)" id="status<?php echo $list['userId']; ?>"
-                                    data-column="userId" data-table="mstcompanies" data-status="<?php echo $list['isActive']; ?>"
-                                    data-update-path="admin/User/updateStatus" data-update="<?php echo $list['userId']; ?>"
-                                    title="Change  Status" class="btn btn-icon btn-label-linkedin col-4">
-                                    <i class="tf-icons ti ti-mouse"></i>
-                                </button>
+
+
+                                <!-- Modal -->
+
+
+
+                                <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
+                                  data-toggle="modal"
+                                            href="#changeStatus{{ $list->id }}" title="تعديل">
+                                         <i class="fa fa-eye"> </i>
+                               </a>
+
+
+
+
                                 <a href="{{ route('users.edit', $list->id) }}" style="margin-left:2px"
                                     class="btn btn-icon btn-label-warning col-4">
                                     <i class="tf-icons ti ti-edit"></i>
                                 </a>
-                                <a href="{{ route('users.show', $list->id) }}" style="margin-left:2px"
-                                    class="btn btn-icon btn-label-success col-4">
-                                    <i class="tf-icons ti ti-eye"></i>
-                                </a>
+
+
+                                @include('dashboard.users.change-status-modal',['list_id'=>$list->id])
+
 
                                 {{-- <button type="button" onclick="confirmDelete(this)" id="{{ $list->id }}"
                                     data-column="userId" data-delete-path="companies/destroy"
@@ -70,10 +84,8 @@
         </div>
     </div>
     <script>
-        $(function() {
-            $(".datatables").DataTable({
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-            })
-        });
     </script>
 @endsection

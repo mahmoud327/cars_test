@@ -89,6 +89,8 @@
         }
     </style>
 
+    @stack('style')
+
 </head>
 
 <body>

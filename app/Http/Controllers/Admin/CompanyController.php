@@ -131,19 +131,11 @@ class CompanyController extends Controller
 
 
     // approve post
-    public function activate($id)
+    public function isActive($id)
     {
-        $admin = Admin::find($id);
-        $admin->update(['activate' => 1]);
-        flash()->success('تم تفعيل هذا الحساب');
+        $admin = Company::find($id);
+        $admin->update(['is_active' => 1]);
         return back();
     }
 
-    public function deactivate($id)
-    {
-        $admin = Admin::find($id);
-        $admin->update(['activate' => 0]);
-        flash()->success('تم تعطيل هذا الحساب ');
-        return back();
-    }
 }

@@ -129,41 +129,6 @@
         </li>
 
 
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Listing &amp; Features</span>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-color-swatch"></i>
-                <div data-i18n="Listing &amp; Features">Listing &amp; Features</div>
-            </a>
-            <ul class="menu-sub">
-            <li class="menu-item">
-                    <a href="" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-plus"></i>
-                        <div>Listing Format</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-plus"></i>
-                        <div>Add Listing features</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-list"></i>
-                        <div>Listing features</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-clipboard-text"></i>
-                        <div>Listings</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
 
 
         <li class="menu-header small text-uppercase">

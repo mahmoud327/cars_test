@@ -53,7 +53,8 @@
     <link rel="stylesheet"
         href="{{ asset('dashboard/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css') }}" />
 
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css"
+        integrity="sha512-5m1IeUDKtuFGvfgz32VVD0Jd/ySGX7xdLxhqemTmThxHdgqlgPdupWoSN8ThtUSLpAGBvA8DY2oO7jJCrGdxoA==" crossorigin="anonymous"
 
 
     <!-- Page CSS -->
@@ -169,6 +170,9 @@
     <script src="{{ asset('dashboard/assets/vendor/libs/quill/katex.js') }}"></script>
     <script src="{{ asset('dashboard/assets/vendor/libs/quill/quill.js') }}"></script>
     <script src="{{ asset('dashboard/assets/js/forms-editors.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix-core.min.js"
+    integrity="sha512-lyT4F0/BxdpY5Rn1EcTA/4OTTGjvJT9SxWGxC1boH9p8TI6MzNexLxEuIe+K/pYoMMcLZTSICA/d3y0ColgiKg==" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
     @include('dashboard.layouts.data_table')
     @stack('scripts')
 

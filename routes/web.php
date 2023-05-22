@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\FeatureListingController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -44,5 +45,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('features', FeatureController::class);
         Route::resource('feature.listings', FeatureListingController::class);
         Route::resource('tags', TagController::class);
+        Route::resource('pages',PageController::class);
     });
 });

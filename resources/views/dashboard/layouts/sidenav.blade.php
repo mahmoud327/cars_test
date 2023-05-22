@@ -131,7 +131,7 @@
 
 
 
-        <li class="menu-header small text-uppercase">
+        {{-- <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Payment &amp; Plan</span>
         </li>
         <li class="menu-item">
@@ -159,7 +159,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Pages &amp; Contents</span>
@@ -171,23 +171,12 @@
             </a>
             <ul class="menu-sub">
             <li class="menu-item">
-            <a href="" class="menu-link">
+            <a href="{{route('pages.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-album"></i>
-                <div>About Us</div>
+                <div>Pages</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-address-book"></i>
-                <div>Contact Us</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="" class="menu-link">
-                <i class="menu-icon tf-icons ti ti-calendar"></i>
-                <div>Term & Conditions</div>
-            </a>
-        </li>
+
             </ul>
         </li>
 

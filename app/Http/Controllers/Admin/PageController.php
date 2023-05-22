@@ -104,8 +104,8 @@ class PageController extends Controller
      */
     public function update(PageRequest $request, $id)
     {
+        $page=$this->model->findorfail($id);
 
-        dd($request->all());
         if (!$request->slug) {
             $slug = Str::slug($request->en['title']);
             $request->merge(['slug' => $slug]);

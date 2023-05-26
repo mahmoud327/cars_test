@@ -21,8 +21,6 @@ use Illuminate\Support\Facades\Storage;
 class BrandController extends Controller
 {
 
-
-
     use ImageTrait;
     /**
      * Display a listing of the resource.

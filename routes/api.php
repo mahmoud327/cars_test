@@ -1,19 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\BrandController;
-use App\Http\Controllers\Api\CatgoryController;
-use App\Http\Controllers\Api\CityController;
-use App\Http\Controllers\Api\leagueTournamentController;
-use App\Http\Controllers\Api\leagueTournamentGroupController;
-use App\Http\Controllers\Api\leagueTournamentMediaController;
-use App\Http\Controllers\Api\MatchController;
-use App\Http\Controllers\Api\MatchEnController;
-use App\Http\Controllers\Api\MatchVideoController;
-use App\Http\Controllers\Api\NewController;
-use App\Http\Controllers\Api\PostController;
-use App\Http\Controllers\Api\StatisticsLeagueTournamentController;
-use App\Http\Controllers\Api\TeamController;
-use App\Http\Controllers\Api\TournamentNewController;
+use App\Http\Controllers\Api\CarController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\FeatureController;
+use App\Http\Controllers\Api\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,7 +26,11 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
 
 
 
-    Route::apiResource('categories', CatgoryController::class);
-    Route::apiResource('brands',    BrandController::class);
-    Route::apiResource('cities', CityController::class);
+    // Route::apiResource('categories', CatgoryController::class);
+    // Route::apiResource('brands',    BrandController::class);
+    // Route::apiResource('cities', CityController::class);
+    Route::get('categories', [CategoryController::class, 'index']);
+    Route::get('features',[FeatureController::class , 'index'] );
+    Route::get('tags',[TagController::class , 'index']);
+    Route::apiResource('cars' , CarController::class);
 });

@@ -51,7 +51,7 @@ class CarController extends Controller
         }
         if($request->features)
         {
-        $car->features()->attach($request->features);
+              $car->features()->attach($request->features);
         }
         if (!empty($request->images) && count($request->images)) {
             foreach ($request->file('images') as $file) {

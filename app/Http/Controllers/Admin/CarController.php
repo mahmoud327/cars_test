@@ -1,20 +1,32 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CarResource;
 use App\Models\Car;
-use App\Services\AttachmentService;
-use ArinaSystems\JsonResponse\Facades\JsonResponse;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
-    protected $attachmentService;
-    public function __construct(AttachmentService $attachmentService)
+    protected $model;
+    protected $viewsDomain = 'dashboard.cars.';
+
+    public function __construct()
     {
-        $this->attachmentService = $attachmentService;
+        $this->model = new Car();
+
+
+    }
+
+
+    /**
+     * @param $view
+     * @param array $params
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    private function view($view, $params = [])
+    {
+        return view($this->viewsDomain . $view, $params);
     }
     /**
      * Display a listing of the resource.
@@ -23,8 +35,8 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::with('tags', 'features')->get();
-        return JsonResponse::json('ok', ['data' => CarResource::collection($cars)]);
+        $records=$this->model->paginate(10);
+        return $this->view('index',compact('records'));
 
     }
 
@@ -35,6 +47,7 @@ class CarController extends Controller
      */
     public function create()
     {
+
     }
 
     /**
@@ -45,23 +58,8 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        $car = Car::create($request->except('tags', 'features', 'images'));
-        if ($request->tags) {
-            $car->tags()->attach($request->tags);
-        }
-        if ($request->features) {
-            $car->features()->attach($request->features);
-        }
-        if (!empty($request->images) && count($request->images)) {
-            foreach ($request->file('images') as $file) {
-                $this->attachmentService->addAttachment($file, $car, 'cars/images', ["type" => "images"]);
 
-            }
 
-        }
-        return JsonResponse::json('ok', [
-            'message' => 'Car created successfully.',
-            'data' => new CarResource($car)]);
     }
 
     /**
@@ -70,11 +68,10 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Car $car)
+    public function show($id)
     {
-        $car->with('tags', 'features');
-        return JsonResponse::json('ok', ['data' => new CarResource($car)]);
-
+        $car = $this->model->findorfail($id);
+        return $this->view('show', compact('car'));
     }
 
     /**
@@ -85,9 +82,9 @@ class CarController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
 
+
+    }
     /**
      * Update the specified resource in storage.
      *

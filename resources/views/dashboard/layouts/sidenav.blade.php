@@ -96,6 +96,15 @@
                 <div>Companies</div>
             </a>
         </li>
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Cars</span>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('cars.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-user"></i>
+                <div>Cars</div>
+            </a>
+        </li>
         {{-- categories makes models --}}
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Categories &amp; Makes</span>

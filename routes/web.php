@@ -46,5 +46,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('feature.listings', FeatureListingController::class);
         Route::resource('tags', TagController::class);
         Route::resource('pages',PageController::class);
+        Route::resource('cars', CarController::class);
     });
 });

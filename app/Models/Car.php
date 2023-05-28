@@ -19,6 +19,7 @@ class Car extends Model
         $this->multiple_attachment_usage = ['default', 'bdf-file'];
 
     }
+    
     public function make()
     {
         return $this->belongsTo(Category::class, 'make_id');

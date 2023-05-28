@@ -23,8 +23,9 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::with('tags', 'features')->get();
-        return JsonResponse::json('ok', ['data' => CarResource::collection($cars)]);
+        $cars = Car::with('tags', 'features');
+        $cars = $this->filter(request(), $cars);
+        return JsonResponse::json('ok', ['data' => CarResource::collection($cars->get())]);
 
     }
 
@@ -109,5 +110,50 @@ class CarController extends Controller
     public function destroy($id)
     {
         //
+    }
+    private function filter(Request $request, $cars)
+    {
+
+        $ranges = $request->query('rangesFilter');
+        $featureFilter = $request->query('featureFilter');
+        $make = $request->query('makeFilter');
+        $model = $request->query('modelFilter');
+        $tagsFilter = $request->query('tagsFilter');
+
+        if (!empty($ranges)) {
+            foreach ($ranges as $key => $value) {
+                if ($value) {
+                    $value = explode(',', $value);
+                    $cars->whereBetween($key, $value);
+                }
+
+            }
+
+        }
+        if ($make) {
+            $make = explode(',', $make);
+            $cars->whereIn('make_id', $make);
+        }
+        if ($model) {
+            $model = explode(',', $model);
+            $cars->whereIn('model_id', $model);
+        }
+
+        if ($featureFilter) {
+            $featureFilter = explode(',', $featureFilter);
+            $cars->whereHas('features', function ($q) use ($featureFilter) {
+                //pivot feature_list_id
+                $q->whereIn('feature_list_id', $featureFilter);
+            });
+        }
+        if ($tagsFilter) {
+            $tagsFilter = explode(',', $tagsFilter);
+            $cars->whereHas('tags', function ($q) use ($tagsFilter) {
+                $q->whereIn('tag_id', $tagsFilter);
+            });
+        }
+
+        return $cars;
+
     }
 }

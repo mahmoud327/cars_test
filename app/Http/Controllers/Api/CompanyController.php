@@ -74,7 +74,7 @@ class CompanyController extends Controller
      */
     public function show()
     {
-        $company=Company::findorfail(auth()->guard('company')->id);
+        $company=Company::findorfail(auth()->guard('company')->id());
         return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
     }
 

@@ -8,11 +8,13 @@ use App\Http\Resources\CompanyResource;
 use App\Models\Car;
 use App\Models\Company;
 use App\Services\AttachmentService;
+use App\Traits\ImageTrait;
 use ArinaSystems\JsonResponse\Facades\JsonResponse;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    use ImageTrait;
     protected $attachmentService;
     public function __construct(AttachmentService $attachmentService)
     {

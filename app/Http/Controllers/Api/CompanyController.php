@@ -49,8 +49,16 @@ class CompanyController extends Controller
     {
         $request['password'] = bcrypt($request->password);
 
-        $company = Company::create($request->except('password'));
 
+        $company = Company::create($request->except('password'));
+        if ($request->image) {
+            $this->uploadImage('uploads/companies', $request->image);
+            $company->update(['image' => $request->image->hashName()]);
+        }
+        if ($request->featureImage) {
+            $this->uploadImage('uploads/companies', $request->featureImage);
+            $company->update(['featureImage' => $request->image->hashName()]);
+        }
         return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
     }
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CarController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\FeatureController;
 use App\Http\Controllers\Api\TagController;
 use Illuminate\Http\Request;
@@ -28,9 +29,14 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
 
     // Route::apiResource('categories', CatgoryController::class);
     // Route::apiResource('brands',    BrandController::class);
-    // Route::apiResource('cities', CityController::class);
+    Route::apiResource('cities', CityController::class);
     Route::get('categories', [CategoryController::class, 'index']);
     Route::get('features',[FeatureController::class , 'index'] );
+    Route::get('features',[FeatureController::class , 'index'] );
+
     Route::get('tags',[TagController::class , 'index']);
     Route::apiResource('cars' , CarController::class);
+
+    Route::apiResource('companies' , CompanyController::class);
+    Route::get('company' , [CompanyController::class,'show']);
 });

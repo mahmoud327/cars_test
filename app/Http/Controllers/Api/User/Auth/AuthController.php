@@ -155,7 +155,8 @@ class AuthController extends Controller
 
     public function show()
     {
-        $user = User::findorfail(auth()->id());
-        return JsonResponse::json('ok', ['data' => UserResource::make($user)]);
-    
+    $user = User::findorfail(auth()->id());
+    return JsonResponse::json('ok', ['data' => UserResource::make($user)]);
+}
+
 }

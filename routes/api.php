@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\CompanyCarController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\FeatureController;
 use App\Http\Controllers\Api\TagController;
+use App\Http\Controllers\Api\UserCarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,14 +34,27 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
     // Route::apiResource('brands',    BrandController::class);
     Route::apiResource('cities', CityController::class);
     Route::get('categories', [CategoryController::class, 'index']);
-    Route::get('features',[FeatureController::class , 'index'] );
-    Route::get('features',[FeatureController::class , 'index'] );
+    Route::get('features', [FeatureController::class, 'index']);
+    Route::get('features', [FeatureController::class, 'index']);
 
-    Route::get('tags',[TagController::class , 'index']);
-    Route::apiResource('cars' , CarController::class)->middleware('auth:company');;
+    Route::get('tags', [TagController::class, 'index']);
+    Route::apiResource('cars', CarController::class)->except('store');
+
+    
+
+    Route::post('user', [UserCarController::class, 'show'])->middleware('auth:api');
+
+    Route::prefix('user')->group(['middleware' => ['auth:api']], function () {
+
+        Route::post('cars', UserCarController::class)->except('store');
+    });
 
 
-    Route::post('company' , [CompanyController::class,'store']);
-    Route::post('company/cars' , [CompanyCarController::class,'index'])->middleware('auth:company');
-    Route::get('company' , [CompanyController::class,'show'])->middleware('auth:company');
+
+    Route::prefix('company')->group(['middleware' => ['auth:company']], function () {
+
+        Route::apiResource('cars', CompanyCarController::class);
+    });
+    Route::post('company', [CompanyController::class, 'store']);
+    Route::get('company', [CompanyController::class, 'show'])->middleware('auth:company');
 });

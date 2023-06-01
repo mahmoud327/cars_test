@@ -4,13 +4,19 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CarResource;
+use App\Http\Resources\CompanyResource;
+use App\Http\Resources\UserResource;
 use App\Models\Car;
+use App\Models\Company;
+use App\Models\User;
 use App\Services\AttachmentService;
+use App\Traits\ImageTrait;
 use ArinaSystems\JsonResponse\Facades\JsonResponse;
 use Illuminate\Http\Request;
 
-class CarController extends Controller
+class UserCarController extends Controller
 {
+    use ImageTrait;
     protected $attachmentService;
     public function __construct(AttachmentService $attachmentService)
     {
@@ -23,9 +29,10 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::with('tags', 'features');
+        $cars = Car::with('tags', 'features')
+            ->where('user_id', auth()->id());
         $cars = $this->filter(request(), $cars);
-        return JsonResponse::json('ok', ['data' => CarResource::collection($cars->get())]);
+        return JsonResponse::json('ok', ['data' => CarResource::collection($cars->paginate(request()->paginate))]);
     }
 
     /**
@@ -64,16 +71,18 @@ class CarController extends Controller
         ]);
     }
 
+
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Car $car)
+    public function show()
     {
-        $car->with('tags', 'features');
-        return JsonResponse::json('ok', ['data' => new CarResource($car)]);
+        $user = User::findorfail(auth()->id());
+        return JsonResponse::json('ok', ['data' => UserResource::make($user)]);
     }
 
     /**

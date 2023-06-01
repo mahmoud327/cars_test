@@ -51,19 +51,23 @@ class CompanyCarController extends Controller
      */
     public function store(Request $request)
     {
-        $request['password'] = bcrypt($request->password);
-
-
-        $company = Company::create($request->except('password'));
-        if ($request->image) {
-            $this->uploadImage('uploads/companies', $request->image);
-            $company->update(['image' => $request->image->hashName()]);
+        $request['company_id'] = auth()->guard('company')->id();
+        $car = Car::create($request->except('tags', 'features', 'images'));
+        if ($request->tags) {
+            $car->tags()->attach($request->tags);
         }
-        if ($request->featureImage) {
-            $this->uploadImage('uploads/companies', $request->featureImage);
-            $company->update(['featureImage' => $request->image->hashName()]);
+        if ($request->features) {
+            $car->features()->attach($request->features);
         }
-        return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
+        if (!empty($request->images) && count($request->images)) {
+            foreach ($request->file('images') as $file) {
+                $this->attachmentService->addAttachment($file, $car, 'cars/images', ["type" => "images"]);
+            }
+        }
+        return JsonResponse::json('ok', [
+            'message' => 'Car created successfully.',
+            'data' => new CarResource($car)
+        ]);
     }
 
 

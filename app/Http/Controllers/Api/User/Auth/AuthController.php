@@ -152,4 +152,10 @@ class AuthController extends Controller
 
         return sendJsonResponse([], 'password is change sucessfully');
     }
+
+    public function show()
+    {
+        $user = User::findorfail(auth()->id());
+        return JsonResponse::json('ok', ['data' => UserResource::make($user)]);
+    
 }

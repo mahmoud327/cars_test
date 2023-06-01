@@ -43,26 +43,26 @@ class CarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $request['user_id'] = auth()->id();
-        $car = Car::create($request->except('tags', 'features', 'images'));
-        if ($request->tags) {
-            $car->tags()->attach($request->tags);
-        }
-        if ($request->features) {
-            $car->features()->attach($request->features);
-        }
-        if (!empty($request->images) && count($request->images)) {
-            foreach ($request->file('images') as $file) {
-                $this->attachmentService->addAttachment($file, $car, 'cars/images', ["type" => "images"]);
-            }
-        }
-        return JsonResponse::json('ok', [
-            'message' => 'Car created successfully.',
-            'data' => new CarResource($car)
-        ]);
-    }
+    // public function store(Request $request)
+    // {
+    //     $request['user_id'] = auth()->id();
+    //     $car = Car::create($request->except('tags', 'features', 'images'));
+    //     if ($request->tags) {
+    //         $car->tags()->attach($request->tags);
+    //     }
+    //     if ($request->features) {
+    //         $car->features()->attach($request->features);
+    //     }
+    //     if (!empty($request->images) && count($request->images)) {
+    //         foreach ($request->file('images') as $file) {
+    //             $this->attachmentService->addAttachment($file, $car, 'cars/images', ["type" => "images"]);
+    //         }
+    //     }
+    //     return JsonResponse::json('ok', [
+    //         'message' => 'Car created successfully.',
+    //         'data' => new CarResource($car)
+    //     ]);
+    // }
 
     /**
      * Display the specified resource.

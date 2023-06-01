@@ -71,19 +71,6 @@ class CompanyCarController extends Controller
     }
 
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        $company = Company::findorfail(auth()->guard('company')->id());
-        return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
-    }
-
     /**
      * Show the form for editing the specified resource.
      *

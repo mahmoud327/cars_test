@@ -79,11 +79,7 @@ class UserCarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
-    {
-        $user = User::findorfail(auth()->id());
-        return JsonResponse::json('ok', ['data' => UserResource::make($user)]);
-    }
+}
 
     /**
      * Show the form for editing the specified resource.

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CarController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CityController;
+use App\Http\Controllers\Api\CompanyCarController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\FeatureController;
 use App\Http\Controllers\Api\TagController;
@@ -36,9 +37,10 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
     Route::get('features',[FeatureController::class , 'index'] );
 
     Route::get('tags',[TagController::class , 'index']);
-    Route::apiResource('cars' , CarController::class);
+    Route::apiResource('cars' , CarController::class)->middleware('auth:company');;
 
-    Route::apiResource('companies' , CompanyController::class);
-    
-    Route::post('company' , [CompanyController::class,'show'])->middleware('auth:company');
+
+    Route::post('company' , [CompanyController::class,'store']);
+    Route::post('company/cars' , [CompanyCarController::class,'index'])->middleware('auth:company');
+    Route::get('company' , [CompanyController::class,'show'])->middleware('auth:company');
 });

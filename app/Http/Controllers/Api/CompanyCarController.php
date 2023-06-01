@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CarResource;
+use App\Http\Resources\CompanyResource;
 use App\Models\Car;
+use App\Models\Company;
 use App\Services\AttachmentService;
+use App\Traits\ImageTrait;
 use ArinaSystems\JsonResponse\Facades\JsonResponse;
 use Illuminate\Http\Request;
 
-class CarController extends Controller
+class CompanyCarController extends Controller
 {
+    use ImageTrait;
     protected $attachmentService;
     public function __construct(AttachmentService $attachmentService)
     {
@@ -23,9 +27,11 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::with('tags', 'features');
+        $cars = Car::with('tags', 'features')
+            ->where('company_id', auth()->guard('company')
+                ->id());
         $cars = $this->filter(request(), $cars);
-        return JsonResponse::json('ok', ['data' => CarResource::collection($cars->get())]);
+        return JsonResponse::json('ok', ['data' => CarResource::collection($cars->paginate(request()->paginate))]);
     }
 
     /**
@@ -45,24 +51,22 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        $request['company_id'] = auth()->guard('company')->id();
-        $car = Car::create($request->except('tags', 'features', 'images'));
-        if ($request->tags) {
-            $car->tags()->attach($request->tags);
+        $request['password'] = bcrypt($request->password);
+
+
+        $company = Company::create($request->except('password'));
+        if ($request->image) {
+            $this->uploadImage('uploads/companies', $request->image);
+            $company->update(['image' => $request->image->hashName()]);
         }
-        if ($request->features) {
-            $car->features()->attach($request->features);
+        if ($request->featureImage) {
+            $this->uploadImage('uploads/companies', $request->featureImage);
+            $company->update(['featureImage' => $request->image->hashName()]);
         }
-        if (!empty($request->images) && count($request->images)) {
-            foreach ($request->file('images') as $file) {
-                $this->attachmentService->addAttachment($file, $car, 'cars/images', ["type" => "images"]);
-            }
-        }
-        return JsonResponse::json('ok', [
-            'message' => 'Car created successfully.',
-            'data' => new CarResource($car)
-        ]);
+        return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
     }
+
+
 
     /**
      * Display the specified resource.
@@ -70,10 +74,10 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Car $car)
+    public function show()
     {
-        $car->with('tags', 'features');
-        return JsonResponse::json('ok', ['data' => new CarResource($car)]);
+        $company = Company::findorfail(auth()->guard('company')->id());
+        return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
     }
 
     /**

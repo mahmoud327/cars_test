@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CarController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\FeatureController;
 use App\Http\Controllers\Api\TagController;

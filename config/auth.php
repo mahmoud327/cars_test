@@ -45,7 +45,7 @@ return [
             'provider' => 'admins',
         ],
         'company' => [
-            'driver' => 'session',
+            'driver' => 'passport',
             'provider' => 'company',
         ],
         'api' => [

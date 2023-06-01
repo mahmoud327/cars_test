@@ -39,5 +39,6 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
     Route::apiResource('cars' , CarController::class);
 
     Route::apiResource('companies' , CompanyController::class);
-    Route::get('company' , [CompanyController::class,'show'])->middleware('auth:company');
+    
+    Route::post('company' , [CompanyController::class,'show'])->middleware('auth:company');
 });

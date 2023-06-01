@@ -23,6 +23,7 @@ class CompanyResource extends JsonResource
             'city_id' => $this->city_id,
             'city_name' => optional($this->city)->title,
             'image' => $this->image_path,
+            'featureImage' => $this->feature_image_path,
 
             'token' => $this->createToken('authToken')->accessToken,
 

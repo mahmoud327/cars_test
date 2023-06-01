@@ -24,6 +24,7 @@ class Company extends Authenticatable
 
     protected $fillable = [
        'name',
+       'featureImage',
        'city',
        'country',
        'user_id',
@@ -54,6 +55,11 @@ class Company extends Authenticatable
 
 
      public function getImagePathAttribute()
+     {
+         return $this->image ? asset('uploads/companies/' .$this->image) : asset('uploads/default.jpeg');
+
+     }
+     public function getFeatureImagePathAttribute()
      {
          return $this->image ? asset('uploads/companies/' .$this->image) : asset('uploads/default.jpeg');
 

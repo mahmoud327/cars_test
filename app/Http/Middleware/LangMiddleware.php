@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 
 class LangMiddleware
 {
@@ -16,12 +15,12 @@ class LangMiddleware
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
 
-     public function handle(Request $request, Closure $next)
-     {
-         $locale = ($request->localization) ? $request->localization : 'ar';
+    public function handle(Request $request, Closure $next)
+    {
+        $locale = ($request->localization) ? $request->localization : 'ar';
 
-         app()->setlocale($locale);
+        app()->setlocale($locale);
 
-         return $next($request);
-     }
+        return $next($request);
+    }
 }

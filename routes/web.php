@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\FeatureListingController;
@@ -46,6 +47,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('feature.listings', FeatureListingController::class);
         Route::resource('tags', TagController::class);
         Route::resource('pages',PageController::class);
+        Route::resource('cities',CityController::class);
         Route::resource('cars', CarController::class);
     });
 });

@@ -16,15 +16,12 @@ class LangMiddleware
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
 
-    public function handle(Request $request, Closure $next)
-    {
-        if ($request->hasHeader("Accept-Language")) {
-            /**
-             * If Accept-Language header found then set it to the default locale
-             */
-            App::setLocale($request->header("Accept-Language"));
-        }
-        return $next($request);
+     public function handle(Request $request, Closure $next)
+     {
+         $locale = ($request->localization) ? $request->localization : 'ar';
 
-    }
+         app()->setlocale($locale);
+
+         return $next($request);
+     }
 }

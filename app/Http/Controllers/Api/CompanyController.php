@@ -64,6 +64,33 @@ class CompanyController extends Controller
         return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
     }
 
+    public function update(Request $request)
+    {
+
+        $company = Company::find(auth()->guard('company')
+        ->id());
+
+        $company->update($request->except('password'));
+
+
+        if($request->password){
+            $company->password= bcrypt($request->password);
+        }
+
+        if ($request->file('image')) {
+            $this->uploadImage('uploads/companies', $request->image);
+            $company->update(['image' => $request->image->hashName()]);
+        }
+        if ($request->file('featureImage')) {
+            $this->uploadImage('uploads/companies', $request->featureImage);
+            $company->update(['featureImage' => $request->image->hashName()]);
+        }
+        
+        return sendJsonResponse([],'updated sucesfuully');
+
+        // return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
+    }
+
 
 
     /**
@@ -96,10 +123,7 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.

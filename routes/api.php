@@ -53,9 +53,10 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
 
 
     Route::group(['middleware' => ['auth:company']], function () {
-
+        
         Route::apiResource('company/cars', CompanyCarController::class);
         Route::get('company', [CompanyController::class, 'show']);
+        Route::post('company', [CompanyController::class, 'update']);
     });
 
     Route::post('company', [CompanyController::class, 'store']);

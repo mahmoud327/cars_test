@@ -29,7 +29,10 @@ class CompanyCarController extends Controller
     {
         $cars = Car::with('tags', 'features')
             ->where('company_id', auth()->guard('company')
-                ->id());
+                ->id())
+                ->latest();
+
+
         $cars = $this->filter(request(), $cars);
         return JsonResponse::json('ok', ['data' => CarResource::collection($cars->paginate(request()->paginate))]);
     }

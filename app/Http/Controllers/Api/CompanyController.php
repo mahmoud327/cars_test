@@ -69,6 +69,7 @@ class CompanyController extends Controller
 
         $company = Company::find(auth()->guard('company')
         ->id());
+        
 
         $company->update($request->except('password'));
 
@@ -85,7 +86,7 @@ class CompanyController extends Controller
             $this->uploadImage('uploads/companies', $request->featureImage);
             $company->update(['featureImage' => $request->image->hashName()]);
         }
-        
+
         return sendJsonResponse([],'updated sucesfuully');
 
         // return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);

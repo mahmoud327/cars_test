@@ -54,7 +54,7 @@ class CompanyController extends Controller
         $request['password'] = bcrypt($request->password);
 
 
-        $company = Company::create($request->except('password'));
+        $company = Company::create($request->except(['image','featureImage']));
         if ($request->image) {
             $this->uploadImage('uploads/companies', $request->image);
             $company->update(['image' => $request->image->hashName()]);
@@ -100,7 +100,7 @@ class CompanyController extends Controller
 
     $company = Company::where('email', $request->email)->first();
 
-        if (!$company || !Hash::check($request->password, $company->password)) {
+        if (!$company || !Hash::check($request->password,$company->password)) {
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
 

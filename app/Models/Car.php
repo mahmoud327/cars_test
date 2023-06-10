@@ -11,15 +11,16 @@ class Car extends Model
     use GetAttribute;
 
     use HasFactory;
+
     protected $guarded = ['id'];
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
         $this->multiple_attachment = true;
         $this->multiple_attachment_usage = ['default', 'bdf-file'];
-
     }
-    
+
+
     public function make()
     {
         return $this->belongsTo(Category::class, 'make_id');

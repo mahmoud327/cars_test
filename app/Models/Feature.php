@@ -15,6 +15,7 @@ class Feature extends Model implements ContractsTranslatable
     protected $guarded=['id'];
     public $timestamps = true;
     public $translatedAttributes = ['name'];
+
     public function listings()
     {
         return $this->hasMany(FeatureList::class,'feature_id');

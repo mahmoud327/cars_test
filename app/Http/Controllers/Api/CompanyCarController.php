@@ -55,6 +55,7 @@ class CompanyCarController extends Controller
     public function store(Request $request)
     {
         $request['company_id'] = auth()->guard('company')->id();
+        
         $car = Car::create($request->except('tags', 'features', 'images'));
         if ($request->tags) {
             $car->tags()->attach($request->tags);

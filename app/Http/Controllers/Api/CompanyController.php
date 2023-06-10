@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\AuthRequest;
 use App\Http\Resources\CarResource;
 use App\Http\Resources\CompanyResource;
 use App\Models\Car;
@@ -69,7 +70,7 @@ class CompanyController extends Controller
 
         $company = Company::find(auth()->guard('company')
         ->id());
-        
+
 
         $company->update($request->except('password'));
 
@@ -91,6 +92,21 @@ class CompanyController extends Controller
 
         // return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
     }
+    public function login(AuthRequest $request)
+    {
+
+        $credentials = request(['email', 'password']);
+        if (!auth()->guard('company')->attempt($credentials)) {
+
+            return sendJsonError('Emailv or Password not correct', 401);
+        }
+        $user = request()->user();
+
+
+
+        return JsonResponse::json('ok', ['data' => CompanyResource::make($user)]);
+    }
+
 
 
 

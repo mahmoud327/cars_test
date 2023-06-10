@@ -47,8 +47,6 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
 
         Route::post('user/cars', [UserCarController::class, 'store']);
         Route::post('user', [AuthController::class, 'show']);
-
-
     });
 
 
@@ -56,6 +54,9 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
 
         Route::apiResource('company/cars', CompanyCarController::class);
         Route::get('company', [CompanyController::class, 'show']);
+
+        Route::post('company/login', [CompanyController::class, 'login']);
+        
         Route::put('company', [CompanyController::class, 'update']);
     });
 

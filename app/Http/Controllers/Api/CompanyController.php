@@ -106,7 +106,7 @@ class CompanyController extends Controller
 
 
 
-     return JsonResponse::json('ok', ['data' => CompanyResource::make( auth()->guard('company')->user())]);
+     return JsonResponse::json('ok', ['data' => CompanyResource::make( $company)]);
 
 
     }

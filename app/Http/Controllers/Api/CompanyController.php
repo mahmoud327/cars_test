@@ -28,8 +28,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::with('tags', 'features');
-        return JsonResponse::json('ok', ['data' => CompanyResource::collection($companies->get())]);
+        $companies = Company::latest()->get();
+        return JsonResponse::json('ok', ['data' => CompanyResource::collection($companies)]);
     }
 
     /**

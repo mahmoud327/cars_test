@@ -13,6 +13,7 @@ use App\Traits\ImageTrait;
 use ArinaSystems\JsonResponse\Facades\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class CompanyController extends Controller
 {
@@ -95,15 +96,17 @@ class CompanyController extends Controller
     public function login(AuthRequest $request)
     {
 
-        $credentials = request(['email', 'password']);
-
-        if (Auth::guard('company')->attempt($credentials)) {
-            $company = Auth::guard('company')->user();
-            return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
-       }
 
 
-       return sendJsonError('error');
+    $company = Company::where('email', $request->email)->first();
+
+        if (!$company || !Hash::check($request->password, $company->password)) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+
+
+
+     return JsonResponse::json('ok', ['data' => CompanyResource::make( auth()->guard('company')->user())]);
 
 
     }

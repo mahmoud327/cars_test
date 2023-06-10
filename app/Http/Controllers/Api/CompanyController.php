@@ -95,7 +95,7 @@ class CompanyController extends Controller
     {
 
         $credentials = request(['email', 'password']);
-        if (!auth()->guard('company')->user()->attempt($credentials)) {
+        if (!auth()->guard('company')->attempt($credentials)) {
 
             return sendJsonError('Emailv or Password not correct', 401);
         }

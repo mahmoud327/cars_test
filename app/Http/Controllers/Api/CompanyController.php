@@ -12,6 +12,7 @@ use App\Services\AttachmentService;
 use App\Traits\ImageTrait;
 use ArinaSystems\JsonResponse\Facades\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -95,15 +96,16 @@ class CompanyController extends Controller
     {
 
         $credentials = request(['email', 'password']);
-        if (!auth()->guard('company')->attempt($credentials)) {
 
-            return sendJsonError('Emailv or Password not correct', 401);
-        }
-       $company= auth()->guard('company')->user();
+        if (Auth::guard('company')->attempt($credentials)) {
+            $company = Auth::guard('company')->user();
+            return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
+       }
 
 
+       return sendJsonError('error');
 
-        return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
+
     }
 
 

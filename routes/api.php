@@ -52,7 +52,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
 
     Route::get('companies', [CompanyController::class, 'index']);
 
-    
+
     Route::group(['middleware' => ['auth:company']], function () {
 
         Route::apiResource('company/cars', CompanyCarController::class);

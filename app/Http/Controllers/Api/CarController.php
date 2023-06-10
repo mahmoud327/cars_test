@@ -116,6 +116,7 @@ class CarController extends Controller
         $featureFilter = $request->query('featureFilter');
         $make = $request->query('makeFilter');
         $model = $request->query('modelFilter');
+        $company_id = $request->query('company_id');
         $tagsFilter = $request->query('tagsFilter');
 
         if (!empty($ranges)) {
@@ -129,6 +130,10 @@ class CarController extends Controller
         if ($make) {
             $make = explode(',', $make);
             $cars->whereIn('make_id', $make);
+        }
+        if ($company_id) {
+            $make = explode(',', $company_id);
+            $cars->whereIn('company_id', $company_id);
         }
         if ($model) {
             $model = explode(',', $model);

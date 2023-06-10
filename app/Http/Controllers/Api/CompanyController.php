@@ -28,9 +28,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $cars = Car::with('tags', 'features');
-        $cars = $this->filter(request(), $cars);
-        return JsonResponse::json('ok', ['data' => CarResource::collection($cars->get())]);
+        $companies = Company::with('tags', 'features');
+        return JsonResponse::json('ok', ['data' => CompanyResource::collection($companies->get())]);
     }
 
     /**
@@ -69,14 +68,14 @@ class CompanyController extends Controller
     {
 
         $company = Company::find(auth()->guard('company')
-        ->id());
+            ->id());
 
 
         $company->update($request->except('password'));
 
 
-        if($request->password){
-            $company->password= bcrypt($request->password);
+        if ($request->password) {
+            $company->password = bcrypt($request->password);
         }
 
         if ($request->file('image')) {
@@ -88,7 +87,7 @@ class CompanyController extends Controller
             $company->update(['featureImage' => $request->image->hashName()]);
         }
 
-        return sendJsonResponse([],'updated sucesfuully');
+        return sendJsonResponse([], 'updated sucesfuully');
 
         // return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
     }
@@ -118,7 +117,7 @@ class CompanyController extends Controller
      */
     public function show()
     {
-        $company=Company::findorfail(auth()->guard('company')->id());
+        $company = Company::findorfail(auth()->guard('company')->id());
         return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
     }
 

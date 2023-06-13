@@ -41,7 +41,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             Route::prefix('api')
-                ->middleware(['api', 'lang'])
+                ->middleware(['api', 'lang','cors'])
                 ->prefix(LaravelLocalization::setLocale() . '/api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));

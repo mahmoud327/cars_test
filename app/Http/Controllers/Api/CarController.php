@@ -132,8 +132,7 @@ class CarController extends Controller
             $cars->whereIn('make_id', $make);
         }
         if ($company_id) {
-            $make = explode(',', $company_id);
-            $cars->whereIn('company_id', $company_id);
+            $cars->where('company_id', $company_id);
         }
         if ($model) {
             $model = explode(',', $model);

@@ -59,6 +59,9 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
         Route::apiResource('company/cars', CompanyCarController::class);
         Route::get('company', [CompanyController::class, 'show']);
 
+        Route::post('company-details/{id}', [CompanyController::class, 'companyDetail']);
+
+
 
         Route::put('company', [CompanyController::class, 'update']);
     });

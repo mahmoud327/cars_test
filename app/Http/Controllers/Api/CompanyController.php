@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\AuthRequest;
+use App\Http\Resources\AllCompanyResource;
 use App\Http\Resources\CarResource;
 use App\Http\Resources\CompanyResource;
 use App\Models\Car;
@@ -31,7 +32,13 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::active()->latest()->get();
-        return JsonResponse::json('ok', ['data' => CompanyResource::collection($companies)]);
+        return JsonResponse::json('ok', ['data' => AllCompanyResource::collection($companies)]);
+    }
+
+    public function companyDetail($id)
+    {
+        $company = Company::findorfail($id);
+        return JsonResponse::json('ok', ['data' => AllCompanyResource::make($company)]);
     }
 
     /**

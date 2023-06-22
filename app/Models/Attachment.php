@@ -9,7 +9,7 @@ class Attachment extends Model
 
     protected $table = 'attachments';
     public $timestamps = true;
-    protected $fillable = array('usage', 'type', 'path','cover_image','sm');
+    protected $fillable = array('usage', 'type', 'path', 'cover_image', 'sm');
 
     public function attachmentable()
     {
@@ -18,14 +18,12 @@ class Attachment extends Model
     public function getImagePathAttribute()
     {
 
-       if($this->sm != null && $this->sm != 'file_not_exists'){
+        if ($this->sm != null && $this->sm != 'file_not_exists') {
 
-           return $this->sm;
+            return $this->sm;
+        } else {
 
-       }else{
-
-           return $this->path;
-       }
+            return $this->path;
+        }
     }
-
 }

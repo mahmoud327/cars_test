@@ -27,10 +27,10 @@ class CompanyCarController extends Controller
      */
     public function index()
     {
-        $cars = Car::with('tags', 'features')
+        $cars = Car::with('tags', 'features','attachments')
             ->where('company_id', auth()->guard('company')
                 ->id())
-                ->latest();
+            ->latest();
 
 
         $cars = $this->filter(request(), $cars);
@@ -55,7 +55,7 @@ class CompanyCarController extends Controller
     public function store(Request $request)
     {
         $request['company_id'] = auth()->guard('company')->id();
-        
+
         $car = Car::create($request->except('tags', 'features', 'images'));
         if ($request->tags) {
             $car->tags()->attach($request->tags);
@@ -68,6 +68,7 @@ class CompanyCarController extends Controller
                 $this->attachmentService->addAttachment($file, $car, 'cars/images', ["type" => "images"]);
             }
         }
+
         return JsonResponse::json('ok', [
             'message' => 'Car created successfully.',
             'data' => new CarResource($car)

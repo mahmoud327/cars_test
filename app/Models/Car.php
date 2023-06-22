@@ -25,6 +25,11 @@ class Car extends Model
     {
         return $this->belongsTo(Category::class, 'make_id');
     }
+
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachmentable');
+    }
     public function model()
     {
         return $this->belongsTo(Category::class, 'model_id');

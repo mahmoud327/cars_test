@@ -239,23 +239,21 @@
                     var dataupdateId = $("#" + item).attr("data-update");
                     var table = $("#" + item).attr("data-table");
                     var currentStatus = $("#" + item).attr("data-status");
-                    changeStatus(path, dataupdateId, column, table, currentStatus);
+                    changeStatus(path, currentStatus,item);
                 } else {
                     swal("Cancelled", "Your imaginary file is safe :)", "error");
                 }
             })
     }
 
-    function changeStatus(path, dataupdateId, column, table, currentStatus) {
+    function changeStatus(path,currentStatus,item) {
         $.ajax({
-
             url:  path,
             type: "POST",
             data: {
                 "_token": "{{ csrf_token() }}",
                 currentStatus: currentStatus,
-                column: column,
-                dataupdateId: dataupdateId
+                dataupdateId: item
             },
             dataType: "html",
             success: function() {

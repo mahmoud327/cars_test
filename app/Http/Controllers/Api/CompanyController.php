@@ -51,6 +51,10 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'email'=>'required|unique:companies,email',
+            'phone'=>'required|unique:companies,phone'
+        ]);
         $request['password'] = bcrypt($request->password);
 
 
@@ -95,7 +99,6 @@ class CompanyController extends Controller
     }
     public function login(AuthRequest $request)
     {
-
 
 
         $company = Company::where('email', $request->email)->first();

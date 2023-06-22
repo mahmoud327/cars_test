@@ -133,9 +133,10 @@ class CompanyController extends Controller
     // approve post
     public function isActive(Request $request)
     {
-        $admin = Company::where('id', $request->dataupdateId)
-            ->where('user_id', $request->column)
-            ->first();
+
+
+        $admin = Company::find($request->dataupdateId);
+
         $admin->update(['status' => $request->currentStatus]);
         return 'sucess';
     }

@@ -34,14 +34,16 @@
                             <td><span class="badge bg-label-<?php echo $list->status == 0 ? 'warning' : 'success'; ?>"><?php echo $list->status == 0 ? 'Awaitong Approvel' : 'Active'; ?></span>
                             </td>
                             <?php
-                              $status= $list->status == 0 ? 1: 0;
+                            $status = $list->status == 0 ? 1 : 0;
                             ?>
                             <td>
 
-                                <button type="button" onclick="confirmStatus(this)" id="status<?php echo $list['userId']; ?>"
-                                    data-column={{$list->user_id}}able="mstcompanies" data-status="{{$status}}"
-                                    data-update-path="{{ route('company.is-active',$list->id) }}" data-update="{{ $list->id }}"
-                                    title="Change  Status" class="btn btn-icon btn-label-linkedin col-4">
+
+                                <button type="button" onclick="confirmStatus(this)" id=<?php echo $list->id ?>
+                                    data-column={{ $list->email }} data-status="{{ $status }}"
+                                    data-update-path="{{ route('company.is-active', $list->id) }}"
+                                    data-update="{{ $list->id }}" title="Change  Status"
+                                    class="btn btn-icon btn-label-linkedin col-4">
                                     <i class="tf-icons ti ti-mouse"></i>
                                 </button>
                                 <a href="{{ route('companies.edit', $list->id) }}" style="margin-left:2px"

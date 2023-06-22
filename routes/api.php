@@ -52,6 +52,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
 
     Route::get('companies', [CompanyController::class, 'index']);
     Route::post('company/login', [CompanyController::class, 'login']);
+    Route::get('company-details/{id}', [CompanyController::class, 'companyDetail']);
+
 
 
     Route::group(['middleware' => ['auth:company']], function () {
@@ -59,7 +61,6 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
         Route::apiResource('company/cars', CompanyCarController::class);
         Route::get('company', [CompanyController::class, 'show']);
 
-        Route::post('company-details/{id}', [CompanyController::class, 'companyDetail']);
 
 
 

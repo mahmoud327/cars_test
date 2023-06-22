@@ -51,7 +51,7 @@ class CompanyController extends Controller
             ->latest()
             ->get();
 
-        return view('dashboard.companies.create', compact('users','cities'));
+        return view('dashboard.companies.create', compact('users', 'cities'));
     }
 
     public function store(Request $request)
@@ -92,11 +92,11 @@ class CompanyController extends Controller
             ->latest()
             ->get();
 
-            $cities = City::query()
+        $cities = City::query()
             ->latest()
             ->get();
 
-        return view('dashboard.companies.edit', compact('company', 'users','cities'));
+        return view('dashboard.companies.edit', compact('company', 'users', 'cities'));
     }
 
     // to update an account
@@ -133,9 +133,10 @@ class CompanyController extends Controller
     // approve post
     public function isActive(Request $request)
     {
-        $admin = Company::find($request->dataupdateId);
+        $admin = Company::where('id', $request->dataupdateId)
+            ->where('user_id', $request->column)
+            ->first();
         $admin->update(['status' => $request->currentStatus]);
         return 'sucess';
     }
-
 }

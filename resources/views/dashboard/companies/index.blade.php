@@ -39,7 +39,7 @@
                             <td>
 
                                 <button type="button" onclick="confirmStatus(this)" id="status<?php echo $list['userId']; ?>"
-                                    data-column="userId" data-table="mstcompanies" data-status="{{$status}}"
+                                    data-column={{ $list->user_id}}able="mstcompanies" data-status="{{$status}}"
                                     data-update-path="{{ route('company.is-active',$list->id) }}" data-update="{{ $list->id }}"
                                     title="Change  Status" class="btn btn-icon btn-label-linkedin col-4">
                                     <i class="tf-icons ti ti-mouse"></i>

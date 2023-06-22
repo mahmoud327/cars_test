@@ -254,6 +254,7 @@
             data: {
                 "_token": "{{ csrf_token() }}",
                 currentStatus: currentStatus,
+                column: column,
                 dataupdateId: dataupdateId
             },
             dataType: "html",

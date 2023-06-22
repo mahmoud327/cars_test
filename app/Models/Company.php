@@ -33,6 +33,7 @@ class Company extends Authenticatable
        'password',
        'address',
        'email',
+       'status',
        'city_id',
        'is_active'
     ];
@@ -84,7 +85,7 @@ class Company extends Authenticatable
         return $this->morphMany('App\Models\Media', 'mediaable');
     }
     public function scopeActive($q){
-     $q->where('active',1);
+     $q->where('status',1);
     }
 }
 

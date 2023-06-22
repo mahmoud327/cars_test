@@ -38,7 +38,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::resource('users', UserController::class);
         Route::resource('companies', CompanyController::class);
-        Route::get('company/{id}', [CompanyController::class,'isActive'])
+        Route::post('company/{id}', [CompanyController::class,'isActive'])
         ->name('company.is-active');
 
 

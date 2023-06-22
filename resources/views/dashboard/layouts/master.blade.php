@@ -248,14 +248,13 @@
 
     function changeStatus(path, dataupdateId, column, table, currentStatus) {
         $.ajax({
+
             url:  path,
             type: "POST",
             data: {
-                column: column,
-                dataupdateId: dataupdateId,
-                table: table,
-                currentStatus: currentStatus
-
+                "_token": "{{ csrf_token() }}",
+                currentStatus: currentStatus,
+                dataupdateId: dataupdateId
             },
             dataType: "html",
             success: function() {

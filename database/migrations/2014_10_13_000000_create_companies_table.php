@@ -21,15 +21,17 @@ return new class  extends Migration
             $table->string('city')->nullable();
             $table->string('county')->nullable();
             $table->text('image')->nullable();
+            $table->text('featureImage')->nullable();
             $table->text('address')->nullable();
             $table->string('password')->nullable();
+            $table->tinyInteger('status')->default(0);
 
 
             $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->unsignedBigInteger('city_id');
+            $table->unsignedBigInteger('city_id')->nullable();
 
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->timestamps();

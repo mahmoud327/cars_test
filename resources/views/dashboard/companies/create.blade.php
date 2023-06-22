@@ -45,7 +45,7 @@
 
 
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
 
                             <label class="form-label" for="bs-validation-bio"> choose city </label>
                             <select class="form-control" required name="city_id">
@@ -58,7 +58,7 @@
                             </select>
 
 
-                        </div>
+                        </div> --}}
 
                         <div class="mb-3">
                             <label class="form-label" for="bs-validation-bio">Address</label>

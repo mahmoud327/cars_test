@@ -131,11 +131,11 @@ class CompanyController extends Controller
 
 
     // approve post
-    public function isActive($id)
+    public function isActive(Request $request)
     {
-        $admin = Company::find($id);
-        $admin->update(['is_active' => 1]);
-        return back();
+        $admin = Company::find($request->dataupdateId);
+        $admin->update(['status' => $request->currentStatus]);
+        return 'sucess';
     }
 
 }

@@ -30,7 +30,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::latest()->get();
+        $companies = Company::active()->latest()->get();
         return JsonResponse::json('ok', ['data' => CompanyResource::collection($companies)]);
     }
 
@@ -54,7 +54,7 @@ class CompanyController extends Controller
         $request['password'] = bcrypt($request->password);
 
 
-        $company = Company::create($request->except(['image','featureImage']));
+        $company = Company::create($request->except(['image', 'featureImage']));
         if ($request->image) {
             $this->uploadImage('uploads/companies', $request->image);
             $company->update(['image' => $request->image->hashName()]);
@@ -98,17 +98,17 @@ class CompanyController extends Controller
 
 
 
-    $company = Company::where('email', $request->email)->first();
-
-        if (!$company || !Hash::check($request->password,$company->password)) {
+        $company = Company::where('email', $request->email)->first();
+        if ($company->status == 0) {
+            return response()->json(['error' => 'company not active'], 408);
+        }
+        if (!$company || !Hash::check($request->password, $company->password)) {
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
 
 
-     return JsonResponse::json('ok', ['data' => CompanyResource::make( $company)]);
-
-
+        return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
     }
 
 

@@ -23,7 +23,7 @@ class Attachment extends Model
             return $this->sm;
         } else {
 
-            return $this->path;
+            return asset($this->path);
         }
     }
 }

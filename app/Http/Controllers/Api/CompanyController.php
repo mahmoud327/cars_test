@@ -58,9 +58,9 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'email'=>'required|unique:companies,email',
-            'phone'=>'required|unique:companies,phone'
+        $this->validate($request, [
+            'email' => 'required|unique:companies,email',
+            'phone' => 'required|unique:companies,phone'
         ]);
         $request['password'] = bcrypt($request->password);
 
@@ -109,16 +109,16 @@ class CompanyController extends Controller
 
 
         $company = Company::where('email', $request->email)->first();
-        if ($company->status == 0) {
-            return response()->json(['error' => 'company not active'], 408);
+        if ($company) {
+            if ($company->status == 0) {
+
+                return response()->json(['error' => 'company not active'], 408);
+            }
+            return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
         }
         if (!$company || !Hash::check($request->password, $company->password)) {
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
-
-
-
-        return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
     }
 
 

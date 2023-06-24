@@ -24,6 +24,7 @@ class CarResource extends JsonResource
             'price'=>$this->price,
             'mileage'=>$this->mileage,
             'engine_size'=>$this->engine_size,
+            'status'=>$this->status,
             'vin_number'=>$this->vin_number,
             'tags'=>TagResource::collection($this->tags??[]),
             'attachments'=>AttachmentResource::collection($this->attachments??[]),

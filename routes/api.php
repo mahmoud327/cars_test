@@ -47,8 +47,11 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
 
         Route::post('user/cars', [UserCarController::class, 'store']);
         Route::get('user/cars', [UserCarController::class, 'index']);
-        
+
         Route::post('user', [AuthController::class, 'show']);
+
+        Route::get('car/{car_id}/active', [UserCarController::class, 'active']);
+        Route::get('car/{car_id}/not-active', [UserCarController::class, 'notActive']);
     });
 
 

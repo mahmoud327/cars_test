@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('year')->nullable();
+            $table->tinyInteger('status')->default(0);
+
             $table->float('mileage')->nullable();
             $table->float('price')->nullable();
             $table->float('engine_size')->nullable();

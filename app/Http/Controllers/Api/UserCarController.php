@@ -27,9 +27,13 @@ class UserCarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cars = Car::with(['tags', 'features','attachments'])
+        $cars = Car::query()
+        ->when($request->status,function($q){
+            $q->whereStatus(request()->status);
+        })
+        ->with(['tags', 'features','attachments'])
             ->where('user_id', auth()->id());
         $cars = $this->filter(request(), $cars);
         return JsonResponse::json('ok', ['data' => CarResource::collection($cars->paginate(request()->paginate))]);
@@ -129,4 +133,25 @@ class UserCarController extends Controller
 
         return $cars;
     }
+        // approve post
+        public function active($id)
+        {
+            dd('dd');
+
+
+            $car = Car::find($id);
+
+            $car->update(['status' => 1]);
+            return sendJsonResponse([],'car is active');
+        }
+        // approve post
+        public function notActive($id)
+        {
+
+
+            $car = Car::find($id);
+
+            $car->update(['status' => 0]);
+            return sendJsonResponse([],'car is active');
+        }
 }

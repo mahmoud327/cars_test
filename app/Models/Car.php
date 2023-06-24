@@ -46,4 +46,8 @@ class Car extends Model
     {
         return $this->belongsToMany(Tag::class, 'car_tag', 'car_id', 'tag_id');
     }
+
+    public function scopeActive($q){
+        $q->where('status',1);
+       }
 }

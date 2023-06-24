@@ -25,9 +25,14 @@ class CompanyCarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cars = Car::with('tags', 'features','attachments')
+        $cars = Car::query()
+        ->when($request->status,function($q){
+            $q->whereStatus(request()->status)
+        })
+
+            ->with('tags', 'features', 'attachments')
             ->where('company_id', auth()->guard('company')
                 ->id())
             ->latest();

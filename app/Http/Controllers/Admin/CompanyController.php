@@ -144,7 +144,6 @@ class CompanyController extends Controller
     public function distinguished(Request $request)
     {
 
-        dd('ddd');
 
         $admin = Company::find($request->dataupdateId);
 

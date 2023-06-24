@@ -54,7 +54,7 @@ class WishlistUserController extends Controller
             'user_id' => auth()->id(),
             'car_id' => $car_id
         ]);
-        return JsonResponse::json('ok', [], 'is-my wishlist sucessfully');
+        return JsonResponse::json('ok','wishlist sucessfully');
     }
 
     public function notWishlist($car_id)
@@ -67,7 +67,7 @@ class WishlistUserController extends Controller
             $wishlist->delete();
         }
 
-        return sendJsonError('wishlist is not exists in mywishlist')
+        return sendJsonError('wishlist is not exists in mywishlist');
 
     }
 }

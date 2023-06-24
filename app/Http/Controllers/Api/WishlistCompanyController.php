@@ -61,7 +61,7 @@ class WishlistCompanyController extends Controller
             'company_id' => auth()->guard('company')->id(),
             'car_id' => $car_id
         ]);
-        return JsonResponse::json('ok', [], 'is-my wishlist sucessfully');
+        return JsonResponse::json('ok', 'is-my wishlist sucessfully');
     }
 
     public function notWishlist($car_id)

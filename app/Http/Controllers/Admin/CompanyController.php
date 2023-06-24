@@ -140,4 +140,15 @@ class CompanyController extends Controller
         $admin->update(['status' => $request->currentStatus]);
         return 'sucess';
     }
+    // approve post
+    public function distinguished(Request $request)
+    {
+
+        dd('ddd');
+
+        $admin = Company::find($request->dataupdateId);
+
+        $admin->update(['is_distinguished' => $request->currentStatus]);
+        return 'sucess';
+    }
 }

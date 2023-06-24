@@ -199,6 +199,30 @@
                 }
             })
     }
+    function confirmDistinguished(item) {
+        swal({
+
+                title: "Are you sure?",
+                text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    item = item.id;
+                    var path = $("#" + item).attr("data-distinguished");
+                    alert(path)
+                    var column = $("#" + item).attr("data-column");
+                    var datadeleteId = $("#" + item).attr("data-delete");
+                    deleteData(path, datadeleteId, column);
+                } else {
+                    swal("Cancelled", "Your imaginary file is safe :)", "error");
+                }
+            })
+    }
 
     function deleteData(path, datadeleteId, column) {
         $.ajax({
@@ -247,6 +271,31 @@
     }
 
     function changeStatus(path,currentStatus,item) {
+        $.ajax({
+            url:  path,
+            type: "POST",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                currentStatus: currentStatus,
+                dataupdateId: item
+            },
+            dataType: "html",
+            success: function() {
+                swal("Done!", "It was succesfully deleted!", "success");
+                window.location.reload();
+            },
+            error: function(xhr, status, error) {
+                var err = xhr.responseText;
+                console.log(err);
+            }
+        });
+    }
+    function confirmdDitinguished() {
+        var path = $("#" + item).attr("data-distinguished-path");
+        alert(path);
+
+
+
         $.ajax({
             url:  path,
             type: "POST",

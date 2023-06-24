@@ -23,6 +23,7 @@ class AllCompanyResource extends JsonResource
             'city_id' => $this->city_id,
             'city_name' => optional($this->city)->title,
             'image' => $this->image_path,
+            'cars'=>CarResource::collection($this->cars??[]),
             'featureImage' => $this->feature_image_path,
 
         ];

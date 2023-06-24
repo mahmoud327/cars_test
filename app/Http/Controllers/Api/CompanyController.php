@@ -37,7 +37,7 @@ class CompanyController extends Controller
 
     public function companyDetail($id)
     {
-        $company = Company::findorfail($id);
+        $company = Company::with('cars')->findorfail($id);
         return JsonResponse::json('ok', ['data' => AllCompanyResource::make($company)]);
     }
 

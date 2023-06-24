@@ -25,6 +25,7 @@ return new class  extends Migration
             $table->text('address')->nullable();
             $table->string('password')->nullable();
             $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('is_distinguished')->default(0);
 
 
             $table->unsignedBigInteger('user_id');

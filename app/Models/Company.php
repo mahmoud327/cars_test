@@ -26,6 +26,7 @@ class Company extends Authenticatable
        'name',
        'featureImage',
        'city',
+       'is_distinguished',
        'country',
        'user_id',
        'image',
@@ -77,6 +78,10 @@ class Company extends Authenticatable
     public function category()
     {
          return  $this->belongsTo('App\Models\Category','category_id');
+    }
+    public function cars()
+    {
+         return  $this->hasmany('App\Models\Car');
     }
 
 

@@ -35,17 +35,26 @@
                             </td>
                             <?php
                             $status = $list->status == 0 ? 1 : 0;
+                            $is_distinguished = $list->is_distinguished == 0 ? 1 : 0;
                             ?>
                             <td>
 
 
-                                <button type="button" onclick="confirmStatus(this)" id=<?php echo $list->id ?>
+                                <button type="button" onclick="confirmStatus(this)" id=<?php echo $list->id; ?>
                                     data-column={{ $list->email }} data-status="{{ $status }}"
                                     data-update-path="{{ route('company.is-active', $list->id) }}"
                                     data-update="{{ $list->id }}" title="Change  Status"
                                     class="btn btn-icon btn-label-linkedin col-4">
                                     <i class="tf-icons ti ti-mouse"></i>
                                 </button>
+
+                                {{-- <button type="button" onclick="confirmdDitinguished(this)" id=<?php echo $list->id; ?>
+                                    data-column={{ $list->email }} data-distinguished="{{ $list->is_distinguished }}"
+                                    data-update-path="{{ route('company.is-distinguished', $list->id) }}"
+                                    data-update="{{ $list->id }}" title="Change  Status"
+                                    class="btn btn-icon btn-label-linkedin col-4">
+                                    مميزة
+                                </button> --}}
                                 <a href="{{ route('companies.edit', $list->id) }}" style="margin-left:2px"
                                     class="btn btn-icon btn-label-warning col-4">
                                     <i class="tf-icons ti ti-edit"></i>

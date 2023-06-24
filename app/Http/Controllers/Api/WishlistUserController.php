@@ -65,6 +65,8 @@ class WishlistUserController extends Controller
 
         if ($wishlist) {
             $wishlist->delete();
+            return sendJsonResponse([],'is-my wishlist id deleted sucessfully');
+
         }
 
         return sendJsonError('wishlist is not exists in mywishlist');

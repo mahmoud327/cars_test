@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Translation\Post;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AllCompanyResource extends JsonResource
@@ -23,9 +24,32 @@ class AllCompanyResource extends JsonResource
             'city_id' => $this->city_id,
             'city_name' => optional($this->city)->title,
             'image' => $this->image_path,
-            'cars'=>CarResource::collection($this->cars??[]),
+            'cars' => CarResource::collection($this->cars ?? []),
             'featureImage' => $this->feature_image_path,
 
         ];
     }
 }
+
+https://ezcariq.com/api/v1/user/cars
+
+Post method
+-cars-for-user
+
+https://ezcariq.com/api/v1/companies
+get method
+
+
+https://ezcariq.com/api/v1/cars
+all-cars-for-guest
+get method
+
+
+https://ezcariq.com/api/v1/companies
+get method
+
+all companies 
+
+https://ezcariq.com/api/v1/company-details/8
+هترجع تفاصيل الشركة ومعاها  array-of-cars
+get method

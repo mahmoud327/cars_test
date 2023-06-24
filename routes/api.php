@@ -46,6 +46,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
     Route::group(['middleware' => ['auth:api']], function () {
 
         Route::post('user/cars', [UserCarController::class, 'store']);
+        Route::get('user/cars', [UserCarController::class, 'index']);
+        
         Route::post('user', [AuthController::class, 'show']);
     });
 

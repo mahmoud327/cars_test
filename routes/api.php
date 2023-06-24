@@ -55,9 +55,9 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
 
         Route::get('car/{car_id}/active', [UserCarController::class, 'active']);
 
-        Route::get('user/mywishlist', [WishlistUserController::class, 'index']);
-        Route::get('user/{car_id/wishlist', [WishlistUserController::class, 'wishlist']);
-        Route::get('user/{car_id}/not-wishlist', [WishlistUserController::class, 'notWishlist']);
+        Route::get('mywishlist', [WishlistUserController::class, 'index']);
+        Route::get('{car_id/wishlist', [WishlistUserController::class, 'wishlist']);
+        Route::get('{car_id}/not-wishlist', [WishlistUserController::class, 'notWishlist']);
     });
 
 

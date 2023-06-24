@@ -26,7 +26,6 @@ class WishlistUserController extends Controller
     public function index(Request $request)
     {
         $wishlist =  Wishlist::where('company_id', auth()->id())
-
            ->get();
         return sendJsonResponse(CarResource::collection($wishlist->car??[]));
     }

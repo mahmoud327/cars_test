@@ -151,6 +151,6 @@ class UserCarController extends Controller
             $car = Car::find($id);
 
             $car->update(['status' => 0]);
-            return sendJsonResponse([],'car is active');
+            return sendJsonResponse([],'car is not- active');
         }
 }

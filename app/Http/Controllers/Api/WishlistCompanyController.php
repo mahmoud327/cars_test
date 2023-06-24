@@ -28,7 +28,7 @@ class WishlistCompanyController extends Controller
         $wishlist =  Wishlist::where('company_id', auth()->guard('company')->id())
 
         ->get();
-        return sendJsonResponse($wishlist);
+        return sendJsonResponse(CarResource::collection($wishlist->car??[]));
     }
 
     /**

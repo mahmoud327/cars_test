@@ -54,7 +54,7 @@ class WishlistUserController extends Controller
             'user_id' => auth()->id(),
             'car_id' => $car_id
         ]);
-        return JsonResponse::json('ok','wishlist sucessfully');
+        return sendJsonResponse([],'is-my wishlist sucessfully');
     }
 
     public function notWishlist($car_id)

@@ -29,7 +29,7 @@ class UserCarController extends Controller
      */
     public function index()
     {
-        $cars = Car::with('tags', 'features')
+        $cars = Car::with(['tags', 'features','attachments'])
             ->where('user_id', auth()->id());
         $cars = $this->filter(request(), $cars);
         return JsonResponse::json('ok', ['data' => CarResource::collection($cars->paginate(request()->paginate))]);

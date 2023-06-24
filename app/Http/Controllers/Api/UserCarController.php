@@ -136,7 +136,6 @@ class UserCarController extends Controller
         // approve post
         public function active($id)
         {
-            dd('dd');
 
 
             $car = Car::find($id);

@@ -25,7 +25,7 @@ class WishlistCompanyController extends Controller
      */
     public function index(Request $request)
     {
-        $wishlist =  Wishlist::where('company_id', auth()->guard('company'))
+        $wishlist =  Wishlist::where('company_id', auth()->guard('company')->id())
 
         ->get();
         return sendJsonResponse($wishlist);

@@ -14,21 +14,21 @@ class CarResource extends JsonResource
      */
     public function toArray($request)
     {
-        return[
-            'id'=>$this->id,
-            'title'=>$this->title,
-            'description'=>$this->description,
-            'make'=>optional($this->make)->name,
-            'model'=>optional($this->model)->name,
-            'year'=>$this->year,
-            'price'=>$this->price,
-            'mileage'=>$this->mileage,
-            'engine_size'=>$this->engine_size,
-            'status'=>$this->status,
-            'vin_number'=>$this->vin_number,
-            'tags'=>TagResource::collection($this->tags??[]),
-            'attachments'=>AttachmentResource::collection($this->attachments??[]),
-            'features' =>  FeatureCarResource::collection($this->features??[]),
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'make' => optional($this->make)->name,
+            'model' => optional($this->model)->name,
+            'year' => $this->year,
+            'price' => $this->price,
+            'mileage' => $this->mileage,
+            'engine_size' => $this->engine_size,
+            'status' => $this->status,
+            'vin_number' => $this->vin_number,
+            'tags' => TagResource::collection($this->tags ?? []),
+            'attachments' => AttachmentResource::collection($this->attachments ?? []),
+            'features' =>  FeatureCarResource::collection($this->features ?? []),
             'show_url' => route('cars.show', ['car' => $this->id]),
 
 

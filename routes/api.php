@@ -9,6 +9,9 @@ use App\Http\Controllers\Api\FeatureController;
 use App\Http\Controllers\Api\TagController;
 use App\Http\Controllers\Api\User\Auth\AuthController;
 use App\Http\Controllers\Api\UserCarController;
+use App\Http\Controllers\Api\WishlistCompanyController;
+use App\Http\Controllers\Api\WishlistUserController;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -51,7 +54,10 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
         Route::post('user', [AuthController::class, 'show']);
 
         Route::get('car/{car_id}/active', [UserCarController::class, 'active']);
-        Route::get('car/{car_id}/not-active', [UserCarController::class, 'notActive']);
+
+        Route::get('user/mywishlist', [WishlistUserController::class, 'index']);
+        Route::get('user/wishlist/{car_id/wishlist', [WishlistUserController::class, 'wishlist']);
+        Route::get('user/wishlist/{car_id}/not-wishlist', [WishlistUserController::class, 'notWishlist']);
     });
 
 
@@ -66,6 +72,9 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
         Route::apiResource('company/cars', CompanyCarController::class);
         Route::get('company', [CompanyController::class, 'show']);
 
+        Route::get('company/mywishlist', [WishlistCompanyController::class, 'index']);
+        Route::get('company/wishlist/{car_id/wishlist', [WishlistCompanyController::class, 'wishlist']);
+        Route::get('company/wishlist/{car_id}/not-wishlist', [WishlistCompanyController::class, 'notWishlist']);
 
 
 

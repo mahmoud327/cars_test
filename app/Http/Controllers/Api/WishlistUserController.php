@@ -63,7 +63,7 @@ class WishlistUserController extends Controller
 
     public function notWishlist($car_id)
     {
-        $wishlist =  Wishlist::whereUesrId(auth()->id())
+        $wishlist =  Wishlist::whereUseId(auth()->id())
             ->whereCarId($car_id)
             ->first();
 

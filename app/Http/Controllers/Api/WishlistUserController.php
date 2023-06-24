@@ -26,8 +26,8 @@ class WishlistUserController extends Controller
     public function index(Request $request)
     {
         $wishlist =  Wishlist::where('company_id', auth()->id())
-           ->get();
-        return sendJsonResponse(CarResource::collection($wishlist->car??[]));
+            ->get();
+        return sendJsonResponse(CarResource::collection($wishlist->car ?? []));
     }
 
 
@@ -48,7 +48,7 @@ class WishlistUserController extends Controller
      */
     public function wishlist($car_id)
     {
-        $wishlist =  Wishlist::whereUserId(auth()->id());
+        $wishlist =  Wishlist::whereUserId(auth()->id())->whereCarId($car_id)->first();
 
         if ($wishlist) {
             return sendJsonError('is exist in my wishlist');
@@ -58,7 +58,7 @@ class WishlistUserController extends Controller
             'user_id' => auth()->id(),
             'car_id' => $car_id
         ]);
-        return sendJsonResponse([],'is-my wishlist sucessfully');
+        return sendJsonResponse([], 'is-my wishlist sucessfully');
     }
 
     public function notWishlist($car_id)
@@ -69,11 +69,9 @@ class WishlistUserController extends Controller
 
         if ($wishlist) {
             $wishlist->delete();
-            return sendJsonResponse([],'is-my wishlist id deleted sucessfully');
-
+            return sendJsonResponse([], 'is-my wishlist id deleted sucessfully');
         }
 
         return sendJsonError('wishlist is not exists in mywishlist');
-
     }
 }

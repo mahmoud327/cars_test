@@ -31,25 +31,3 @@ class AllCompanyResource extends JsonResource
     }
 }
 
-https://ezcariq.com/api/v1/user/cars
-
-Post method
--cars-for-user
-
-https://ezcariq.com/api/v1/companies
-get method
-
-
-https://ezcariq.com/api/v1/cars
-all-cars-for-guest
-get method
-
-
-https://ezcariq.com/api/v1/companies
-get method
-
-all companies 
-
-https://ezcariq.com/api/v1/company-details/8
-هترجع تفاصيل الشركة ومعاها  array-of-cars
-get method

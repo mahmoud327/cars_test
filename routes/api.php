@@ -66,8 +66,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
         Route::get('car/{car_id}/active', [UserCarController::class, 'active']);
 
         Route::get('mywishlist', [WishlistUserController::class, 'index']);
-        Route::get('{car_id}/wishlist', [WishlistUserController::class, 'wishlist']);
-        Route::get('{car_id}/not-wishlist', [WishlistUserController::class, 'notWishlist']);
+        Route::post('{car_id}/wishlist', [WishlistUserController::class, 'wishlist']);
+        Route::post('{car_id}/not-wishlist', [WishlistUserController::class, 'notWishlist']);
     });
 
 
@@ -83,8 +83,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
         Route::get('company', [CompanyController::class, 'show']);
 
         Route::get('company/mywishlist', [WishlistCompanyController::class, 'index']);
-        Route::get('company/{car_id}/wishlist', [WishlistCompanyController::class, 'wishlist']);
-        Route::get('company/{car_id}/not-wishlist', [WishlistCompanyController::class, 'notWishlist']);
+        Route::post('company/{car_id}/wishlist', [WishlistCompanyController::class, 'wishlist']);
+        Route::post('company/{car_id}/not-wishlist', [WishlistCompanyController::class, 'notWishlist']);
 
 
 

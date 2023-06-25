@@ -26,7 +26,7 @@ class WishlistCompanyController extends Controller
     public function index(Request $request)
     {
 
-        $wishlist_car_ids =  Wishlist::where('company_id', auth()->id())
+        $wishlist_car_ids =  Wishlist::where('company_id', auth()->guard('company')->id())
         ->pluck('car_id')
         ->toArray();
     $cars =  Car::whereIn('id', $wishlist_car_ids)->get();

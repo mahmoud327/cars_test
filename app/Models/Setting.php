@@ -11,17 +11,15 @@ class Setting extends Model
     public $timestamps = true;
 
     protected $fillable = [
-       'about_us',
-       'phone',
-       'address',
-       'fb_link',
-       'tw_link',
-       'linkedin_link',
-       'inst_link',
-       'whatsapp_link',
-       'skype_link',
+        'about_us',
+        'phone',
+        'address',
+        'fb_link',
+        'tw_link',
+        'linkedin_link',
+        'inst_link',
+        'whatsapp_link',
+        'skype_link',
+        'views'
     ];
-
-
 }
-

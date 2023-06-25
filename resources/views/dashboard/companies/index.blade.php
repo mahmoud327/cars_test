@@ -34,8 +34,8 @@
                             <td><span class="badge bg-label-<?php echo $list->status == 0 ? 'warning' : 'success'; ?>"><?php echo $list->status == 0 ? 'Awaitong Approvel' : 'Active'; ?></span>
                             </td>
                             <?php
-                            $status = $list->status == 0 ? 1 : 0;
-                            $is_distinguished = $list->is_distinguished == 0 ? 1 : 0;
+                                $status = $list->status == 0 ? 1 : 0;
+                                $is_distinguished = $list->is_distinguished == 0 ? 1 : 0;
                             ?>
                             <td>
 

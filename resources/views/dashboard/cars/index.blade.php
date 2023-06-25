@@ -19,6 +19,8 @@
                         <th>price</th>
                         <th>engine size</th>
                         <th>mileage</th>
+                        <th>Status</th>
+
                         <th style="text-alight:center">Action</th>
 
                     </tr>
@@ -37,8 +39,24 @@
                             <td>{{ $record->price }}</td>
                             <td>{{ $record->engine_size }}</td>
                             <td>{{ $record->mileage }}</td>
+                            <td><span class="badge bg-label-<?php echo $record->status == 0 ? 'warning' : 'success'; ?>"><?php echo $record->status == 0 ? 'Awaitong Approvel' : 'Active'; ?></span>
+                            </td>
+                            <?php
+                                $status = $record->status == 0 ? 1 : 0;
+
+                            ?>
+
 
                             <td>
+
+                                <button type="button" onclick="confirmStatus(this)" id=<?php echo $record->id; ?>
+                                    data-column={{ $record->status }} data-status="{{ $status }}"
+                                    data-update-path="{{ route('car.is-active', $status ) }}"
+                                    data-update="{{ $record->id }}" title="Change  Status"
+                                    class="btn btn-icon btn-label-linkedin col-4">
+                                    <i class="tf-icons ti ti-mouse"></i>
+                                </button>
+
 
 
                                 <a href="{{ route('cars.show', $record->id) }}" style="margin-left:2px"

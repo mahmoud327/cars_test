@@ -107,4 +107,17 @@ class CarController extends Controller
     {
         //
     }
+
+
+    // approve post
+    public function isActive(Request $request)
+    {
+
+
+        $admin = Car::find($request->dataupdateId);
+
+        $admin->status=$request->currentStatus;
+        $admin->save();
+        return 'sucess';
+    }
 }

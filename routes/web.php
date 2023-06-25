@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CompanyController;
@@ -40,6 +41,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('companies', CompanyController::class);
         Route::post('company/{id}', [CompanyController::class,'isActive'])
         ->name('company.is-active');
+
+        Route::post('car/{id}/is-active', [CarController::class,'isActive'])
+        ->name('car.is-active');
 
         Route::post('company/{id}/distinguished', [CompanyController::class,'distinguished'])
         ->name('company.is-distinguished');

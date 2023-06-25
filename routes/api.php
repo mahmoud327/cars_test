@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\User\Auth\AuthController;
 use App\Http\Controllers\Api\UserCarController;
 use App\Http\Controllers\Api\WishlistCompanyController;
 use App\Http\Controllers\Api\WishlistUserController;
+use App\Models\Setting;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,15 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
 
 
 
+    Route::get('views', function () {
+        $setting = Setting::find(1);
+
+        $setting->increment('views');
+        return sendJsonResponse([
+            'views' => $setting->views
+        ]);
+
+    });
 
     // Route::apiResource('categories', CatgoryController::class);
     // Route::apiResource('brands',    BrandController::class);

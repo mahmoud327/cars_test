@@ -49,9 +49,9 @@ class WishlistUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function wishlist($car_id)
+    public function wishlist(Request $request)
     {
-        $wishlist =  Wishlist::whereUserId(auth()->id())->whereCarId($car_id)->first();
+        $wishlist =  Wishlist::whereUserId(auth()->id())->whereCarId($request->car_id)->first();
 
         if ($wishlist) {
             return sendJsonError('is exist in my wishlist');
@@ -59,15 +59,15 @@ class WishlistUserController extends Controller
 
         Wishlist::create([
             'user_id' => auth()->id(),
-            'car_id' => $car_id
+            'car_id' => $request->car_id
         ]);
         return sendJsonResponse([], 'is-my wishlist sucessfully');
     }
 
-    public function notWishlist($car_id)
+    public function notWishlist(Request $request)
     {
         $wishlist =  Wishlist::whereUserId(auth()->id())
-            ->whereCarId($car_id)
+            ->whereCarId($request->car_id)
             ->first();
 
         if ($wishlist) {

@@ -49,10 +49,10 @@ class WishlistCompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function wishlist($car_id)
+    public function wishlist(Request $request)
     {
         $wishlist =  Wishlist::where('company_id', auth()->guard('company')->id())
-        ->whereCarId($car_id)
+        ->whereCarId($request->car_id)
         ->first();
 
 
@@ -62,15 +62,15 @@ class WishlistCompanyController extends Controller
 
         Wishlist::create([
             'company_id' => auth()->guard('company')->id(),
-            'car_id' => $car_id
+            'car_id' => $request->car_id
         ]);
           return sendJsonResponse([],'is-my wishlist sucessfully');
     }
 
-    public function notWishlist($car_id)
+    public function notWishlist(Request $request)
     {
         $wishlist =  Wishlist::where('company_id', auth()->guard('company')->id())
-        ->whereCarId($car_id)
+        ->whereCarId($request->car_id)
         ->first();
 
         if ($wishlist) {

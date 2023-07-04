@@ -3,12 +3,12 @@
 @section('content')
 
     <div class="card">
-        <div class="" style="margin-left:1100px">
+        {{-- <div class="" style="margin-left:1100px">
             <a href="{{ route('companies.create') }}" class="dt-button add-new btn btn-primary" tabindex="0"
                 aria-controls="DataTables_Table_0" type="button" fdprocessedid="dvqh2r"><span><i
                         class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block"></span></span>
             </a>
-        </div>
+        </div> --}}
         <div class="card-datatable table-responsive pt-0">
             <table class="datatables-companies table">
                 <thead>

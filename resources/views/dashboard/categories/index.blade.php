@@ -5,7 +5,7 @@
     <div class="card">
         <h5 class="card-header">{{ request('type') == 'car' ? 'Categories' : request('type') }}</h5>
 
-        <div class="" style="margin-left:1100px">
+        <div class="">
             <a href="{{ route('categories.create',['type'=>request('type'),'parent_id'=>request('parent_id')]) }}" class="dt-button add-new btn btn-primary" tabindex="0"
                 aria-controls="DataTables_Table_0" type="button" fdprocessedid="dvqh2r"><span><i
                         class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block"></span></span>

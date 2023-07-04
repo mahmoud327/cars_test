@@ -110,9 +110,9 @@
             <span class="menu-header-text">Categories &amp; Makes</span>
         </li>
         <li class="menu-item">
-            <a href="{{ route('categories.index',['type'=>'car']) }}" class="menu-link">
+            <a href="{{ route('categories.index',['type'=>'model']) }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-user"></i>
-                <div>Categories</div>
+                <div>model</div>
             </a>
         </li>
         <li class="menu-item">

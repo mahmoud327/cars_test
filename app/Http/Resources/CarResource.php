@@ -31,10 +31,6 @@ class CarResource extends JsonResource
             'features' =>  FeatureCarResource::collection($this->features ?? []),
             'show_url' => route('cars.show', ['car' => $this->id]),
 
-
-
-
-
         ];
     }
 }

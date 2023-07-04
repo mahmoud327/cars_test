@@ -41,7 +41,6 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
         return sendJsonResponse([
             'views' => $setting->views
         ]);
-
     });
 
     // Route::apiResource('categories', CatgoryController::class);

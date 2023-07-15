@@ -1,8 +1,8 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
+        <a href="{{ route('dashboard.index') }}" class="app-brand-link">
 
-            <img width="100" src="{{asset('logo/4.png')}}" alt="">
+            <img width="100" src="{{ asset('logo/4.png') }}" alt="">
 
 
         </a>
@@ -18,7 +18,7 @@
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{ route('dashboard.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-dashboard"></i>
                 <div>Dashboard</div>
             </a>
@@ -99,10 +99,22 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Cars</span>
         </li>
+
         <li class="menu-item">
             <a href="{{ route('cars.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-user"></i>
                 <div>Cars</div>
+            </a>
+        </li>
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Banners</span>
+        </li>
+
+        <li class="menu-item">
+            <a href="{{ route('banners.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-user"></i>
+                <div>banners</div>
             </a>
         </li>
         {{-- categories makes models --}}
@@ -110,18 +122,18 @@
             <span class="menu-header-text">Categories &amp; Makes</span>
         </li>
         <li class="menu-item">
-            <a href="{{ route('categories.index',['type'=>'model']) }}" class="menu-link">
+            <a href="{{ route('categories.index', ['type' => 'model']) }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-user"></i>
                 <div>model</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ route('categories.index',['type'=>'make']) }}" class="menu-link">
+            <a href="{{ route('categories.index', ['type' => 'make']) }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-users"></i>
                 <div>Makes</div>
             </a>
         </li>
-          <li class="menu-header small text-uppercase">
+        <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Features &amp; Tags</span>
         </li>
         <li class="menu-item">
@@ -170,24 +182,24 @@
             </ul>
         </li> --}}
 
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Pages &amp; Contents</span>
-        </li>
-        <li class="menu-item">
+        {{-- <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">banners &amp;</span>
+        </li> --}}
+        {{-- <li class="menu-item">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-map"></i>
-                <div data-i18n="Pages &amp; Contents">Pages &amp; Contents</div>
+                <div data-i18n="Pages &amp; Contents">banners </div>
             </a>
             <ul class="menu-sub">
             <li class="menu-item">
-            <a href="{{route('pages.index')}}" class="menu-link">
+            <a href="{{route('banners.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-album"></i>
-                <div>Pages</div>
+                <div>banners</div>
             </a>
         </li>
 
             </ul>
-        </li>
+        </li> --}}
 
         <li class="menu-item">
             <a href="{{ route('admin.logout') }}" class="menu-link">

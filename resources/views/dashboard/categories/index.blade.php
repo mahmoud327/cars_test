@@ -1,14 +1,15 @@
 @extends('dashboard.layouts.master')
-@section('title', request('type')=='car' ? 'Categories' : request('type'))
+@section('title', request('type') == 'car' ? 'Categories' : request('type'))
 @section('content')
 
     <div class="card">
         <h5 class="card-header">{{ request('type') == 'car' ? 'Categories' : request('type') }}</h5>
 
         <div class="">
-            <a href="{{ route('categories.create',['type'=>request('type'),'parent_id'=>request('parent_id')]) }}" class="dt-button add-new btn btn-primary" tabindex="0"
-                aria-controls="DataTables_Table_0" type="button" fdprocessedid="dvqh2r"><span><i
-                        class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block"></span></span>
+            <a href="{{ route('categories.create', ['type' => request('type'), 'parent_id' => request('parent_id')]) }}"
+                class="dt-button add-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0" type="button"
+                fdprocessedid="dvqh2r"><span><i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span
+                        class="d-none d-sm-inline-block"></span></span>
             </a>
         </div>
         <div class="card-datatable table-responsive pt-0">
@@ -18,8 +19,7 @@
                         <th>#</th>
                         <th> Image </th>
                         @foreach (config('translatable.locales') as $locale)
-                        <th> Name ({{ $locale }}) </th>
-
+                            <th> Name ({{ $locale }}) </th>
                         @endforeach
                         <th style="text-alight:center">Action</th>
 
@@ -32,13 +32,16 @@
                         <tr>
 
                             <td>{{ $loop->iteration }}</td>
-                            <td>                            @if($record->image)
-                                <img src="{{ asset('uploads/categories/' . $record->image) }}" alt="" width="50px"
-                                    height="50px">  @endif</td>
+                            <td>
+                                @if ($record->image)
+                                    <img src="{{ asset('uploads/categories/' . $record->image) }}" alt=""
+                                        width="50px" height="50px">
+                                @endif
+                            </td>
 
-                                    @foreach (config('translatable.locales') as $locale)
-                                    <td>{{ $record->translate($locale)->name }}</td>
-                                    @endforeach
+                            @foreach (config('translatable.locales') as $locale)
+                                <td>{{ $record->translate($locale)->name }}</td>
+                            @endforeach
 
 
                             {{-- <td><span class="badge bg-label-"></span>
@@ -52,16 +55,25 @@
                                     <i class="tf-icons ti ti-mouse"></i>
                                 </button> --}}
                                 {{-- //add model --}}
-                                @if(request('type')=='make')
-                                <a href="{{ route('categories.index',[ 'type'=> 'model', 'parent_id'=> $record->id]) }}" style="margin-left:2px"
-                                    class="btn btn-icon btn-label-warning col-4" title="show models">
-                                    <i class="tf-icons ti ti-eye"></i>
-                                </a>
+                                @if (request('type') == 'make')
+                                    <a href="{{ route('categories.index', ['type' => 'model', 'parent_id' => $record->id]) }}"
+                                        style="margin-left:2px" class="btn btn-icon btn-label-warning col-4"
+                                        title="show models">
+                                        <i class="tf-icons ti ti-eye"></i>
+                                    </a>
                                 @endif
-                                <a href="{{ route('categories.edit',[ 'type'=> request('type'),'parent_id'=>request('parent_id'), $record->id]) }}" style="margin-left:2px"
-                                    class="btn btn-icon btn-label-warning col-4">
+                                <a href="{{ route('categories.edit', ['type' => request('type'), 'parent_id' => request('parent_id'), $record->id]) }}"
+                                    style="margin-left:2px" class="btn btn-icon btn-label-warning col-4">
                                     <i class="tf-icons ti ti-edit"></i>
                                 </a>
+                                <button type="button" onclick="confirmDeleted(this)" id=2
+                                    data-column-id={{ $record->id }}
+                                    data-delete-path="{{ route('categories.destroy', $record->id) }}"
+                                    class="btn btn-icon btn-label-danger col-4">
+                                    <i class="tf-icons ti ti-trash"></i>
+
+                                </button>
+
                                 {{-- <a href="{{ route('categories.show', $list->id) }}" style="margin-left:2px"
                                     class="btn btn-icon btn-label-success col-4">
                                     <i class="tf-icons ti ti-eye"></i>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CityController;
@@ -50,6 +51,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
 
         Route::resource('categories', CategoryController::class);
+        Route::resource('banners', BannerController::class);
         Route::resource('features', FeatureController::class);
         Route::resource('feature.listings', FeatureListingController::class);
         Route::resource('tags', TagController::class);

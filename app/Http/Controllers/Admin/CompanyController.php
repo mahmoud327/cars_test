@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MarketerCode;
 use App\Models\Admin;
+use App\Models\Car;
 use App\Models\City;
 use App\Models\Company;
 use App\Models\User;
@@ -76,7 +77,8 @@ class CompanyController extends Controller
             ->with('user')
 
             ->find($id);
-        return view('dashboard.companies.show', compact('company'));
+        $records = Car::where('company_id', $id)->get();
+        return view('dashboard.companies.show', compact('company','records'));
     }
 
     // to add an account
@@ -117,15 +119,6 @@ class CompanyController extends Controller
     }
 
 
-    // to delete an admin
-    public function destroy($id)
-    {
-        $admin = Admin::find($id);
-
-        $admin->delete();
-
-        return back()->with('status', '  deleted successfully');
-    }
 
 
 
@@ -143,11 +136,21 @@ class CompanyController extends Controller
     // approve post
     public function distinguished(Request $request)
     {
+        $company = Company::find($request->column);
 
-
-        $admin = Company::find($request->dataupdateId);
-
-        $admin->update(['is_distinguished' => $request->currentStatus]);
+        $company->update(['is_distinguished' => $request->distinguished]);
+        return 'sucess';
+    }
+    public function destroy(Request $request)
+    {
+        //
+        $company = Company::find($request->column);
+        if ($company->cars()->exists()) {
+            foreach ($company->cars as $car) {
+                $car->delete();
+            }
+        }
+        $company->delete();
         return 'sucess';
     }
 }

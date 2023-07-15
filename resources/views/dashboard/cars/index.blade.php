@@ -42,19 +42,25 @@
                             <td><span class="badge bg-label-<?php echo $record->status == 0 ? 'warning' : 'success'; ?>"><?php echo $record->status == 0 ? 'Awaitong Approvel' : 'Active'; ?></span>
                             </td>
                             <?php
-                                $status = $record->status == 0 ? 1 : 0;
+                            $status = $record->status == 0 ? 1 : 0;
 
                             ?>
-
-
                             <td>
 
                                 <button type="button" onclick="confirmStatus(this)" id=<?php echo $record->id; ?>
                                     data-column={{ $record->status }} data-status="{{ $status }}"
-                                    data-update-path="{{ route('car.is-active', $status ) }}"
+                                    data-update-path="{{ route('car.is-active', $status) }}"
                                     data-update="{{ $record->id }}" title="Change  Status"
                                     class="btn btn-icon btn-label-linkedin col-4">
                                     <i class="tf-icons ti ti-mouse"></i>
+                                </button>
+
+                                <button type="button" onclick="confirmDeleted(this)" id=2
+                                    data-column-id={{ $record->id }}
+                                    data-delete-path="{{ route('cars.destroy', $record->id) }}"
+                                    class="btn btn-icon btn-label-danger col-4">
+                                    <i class="tf-icons ti ti-trash"></i>
+
                                 </button>
 
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MarketerCode;
 use App\Models\Admin;
+use App\Models\Car;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -14,6 +15,7 @@ use Illuminate\Support\Str;
 use Hash;
 use DB;
 use Illuminate\Support\Facades\Hash as FacadesHash;
+use PDO;
 
 class UserController extends Controller
 {
@@ -45,6 +47,7 @@ class UserController extends Controller
         $user = User::query()
 
             ->find($id);
+        $records = Car::whereUserId($id)->get();
         return view('dashboard.users.show', compact('user'));
     }
     // to show all accounts
@@ -93,7 +96,7 @@ class UserController extends Controller
         $this->validate($request, [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|email|unique:users,email,' .$id,
+            'email' => 'required|email|unique:users,email,' . $id,
         ]);
 
 
@@ -113,33 +116,22 @@ class UserController extends Controller
     }
 
 
-    // to delete an admin
-    public function destroy($id)
+
+
+
+
+
+
+    public function destroy(Request $request)
     {
-        $admin = Admin::find($id);
-
-        $admin->delete();
-
-        return back()->with('status', '  deleted successfully');
-    }
-
-
-
-
-    // approve post
-    public function activate($id)
-    {
-        $admin = Admin::find($id);
-        $admin->update(['activate' => 1]);
-        flash()->success('تم تفعيل هذا الحساب');
-        return back();
-    }
-
-    public function deactivate($id)
-    {
-        $admin = Admin::find($id);
-        $admin->update(['activate' => 0]);
-        flash()->success('تم تعطيل هذا الحساب ');
-        return back();
+        //
+        $user = User::find($request->column);
+        if ($user->cars()->exists()) {
+            foreach ($user->cars as $car) {
+                $car->delete();
+            }
+        }
+        $user->delete();
+        return 'sucess';
     }
 }

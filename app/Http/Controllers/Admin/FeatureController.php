@@ -23,7 +23,7 @@ class FeatureController extends Controller
     {
         $this->model = new Feature();
     }
-    
+
     private function view($view, $params = [])
     {
         return view($this->viewsDomain . $view, $params);
@@ -69,9 +69,11 @@ class FeatureController extends Controller
         return redirect()->route('features.index')->with('status', "updated successfully");
     }
 
-    public function destroy(Feature $feature)
+    public function destroy(Request $request)
     {
+        //
+        $feature = Feature::find($request->column);
         $feature->delete();
-        return redirect()->route('categories.index')->with('status', "deleted successfully");
+        return 'sucess';
     }
 }

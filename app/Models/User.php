@@ -52,4 +52,8 @@ class User extends Authenticatable
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+    public function cars()
+    {
+        return  $this->hasmany('App\Models\Car');
+    }
 }

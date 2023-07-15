@@ -31,10 +31,9 @@ class CategoryController extends Controller
     public function index()
     {
         if (request('parent_id')) {
-          $category = Category::findorfail(request('parent_id'));
+            $category = Category::findorfail(request('parent_id'));
             $records = $category->children()->latest()->paginate(10);
-        }
-        else{
+        } else {
             $records = Category::where('type', $this->type)->latest()->paginate(10);
         }
         return $this->view('index', compact('records'));
@@ -57,8 +56,7 @@ class CategoryController extends Controller
             $this->uploadImage('uploads/categories', $request->image);
             $category->update(['image' => $request->image->hashName()]);
         }
-        return redirect()->route('categories.index', ['type' => request('type'),'parent_id'=>request('parent_id')])->with('status', "add successfully");
-
+        return redirect()->route('categories.index', ['type' => request('type'), 'parent_id' => request('parent_id')])->with('status', "add successfully");
     }
     public function edit(Category $category)
     {
@@ -74,13 +72,14 @@ class CategoryController extends Controller
             $category->update(['image' => $request->image->hashName()]);
         }
 
-        return redirect()->route('categories.index', ['type' => request('type'),'parent_id'=>request('parent_id')])->with('status', "updated successfully");
+        return redirect()->route('categories.index', ['type' => request('type'), 'parent_id' => request('parent_id')])->with('status', "updated successfully");
     }
 
-    public function destroy(Category $category)
+    public function destroy(Request $request)
     {
-        $category->delete();
-        return redirect()->route('categories.index')->with('status', "deleted successfully");
+        //
+        $car = Category::find($request->column);
+        $car->delete();
+        return 'sucess';
     }
-
 }

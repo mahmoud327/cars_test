@@ -14,8 +14,6 @@ class CarController extends Controller
     public function __construct()
     {
         $this->model = new Car();
-
-
     }
 
 
@@ -35,9 +33,8 @@ class CarController extends Controller
      */
     public function index()
     {
-        $records=$this->model->latest()->paginate();
-        return $this->view('index',compact('records'));
-
+        $records = $this->model->latest()->paginate();
+        return $this->view('index', compact('records'));
     }
 
     /**
@@ -47,7 +44,6 @@ class CarController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -58,8 +54,6 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-
-
     }
 
     /**
@@ -82,8 +76,6 @@ class CarController extends Controller
      */
     public function edit($id)
     {
-
-
     }
     /**
      * Update the specified resource in storage.
@@ -103,9 +95,12 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
+       $car= Car::find($request->column);
+       $car->delete();
+        return 'sucess';
     }
 
 
@@ -116,7 +111,7 @@ class CarController extends Controller
 
         $admin = Car::find($request->dataupdateId);
 
-        $admin->status=$request->currentStatus;
+        $admin->status = $request->currentStatus;
         $admin->save();
         return 'sucess';
     }

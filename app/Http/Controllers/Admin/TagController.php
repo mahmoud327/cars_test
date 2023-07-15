@@ -65,9 +65,11 @@ class TagController extends Controller
         return redirect()->route('tags.index')->with('status', "updated successfully");
     }
 
-    public function destroy(Tag $tag)
+    public function destroy(Request $request)
     {
-        $feature->delete();
-        return redirect()->route('tags.index')->with('status', "deleted successfully");
+        //
+        $tag = Tag::find($request->column);
+        $tag->delete();
+        return 'sucess';
     }
 }

@@ -177,7 +177,7 @@
     @stack('scripts')
 
 <script>
-    function confirmDelete(item) {
+    function confirmDeleted(item) {
         swal({
                 title: "Are you sure?",
                 text: "You will not be able to recover this!",
@@ -188,12 +188,15 @@
                 closeOnConfirm: false
             },
             function(isConfirm) {
+
                 if (isConfirm) {
                     item = item.id;
+
                     var path = $("#" + item).attr("data-delete-path");
-                    var column = $("#" + item).attr("data-column");
+                    var column = $("#" + item).attr("data-column-id");
                     var datadeleteId = $("#" + item).attr("data-delete");
-                    deleteData(path, datadeleteId, column);
+                    console.log('ff',path, datadeleteId, column)
+                    deleteData(path, datadeleteId, column,item);
                 } else {
                     swal("Cancelled", "Your imaginary file is safe :)", "error");
                 }
@@ -214,7 +217,6 @@
                 if (isConfirm) {
                     item = item.id;
                     var path = $("#" + item).attr("data-distinguished");
-                    alert(path)
                     var column = $("#" + item).attr("data-column");
                     var datadeleteId = $("#" + item).attr("data-delete");
                     deleteData(path, datadeleteId, column);
@@ -225,12 +227,14 @@
     }
 
     function deleteData(path, datadeleteId, column) {
+
         $.ajax({
             url:  path,
-            type: "POST",
+            type: "delete",
             data: {
                 column: column,
                 datadeleteId: datadeleteId,
+                "_token": "{{ csrf_token() }}",
 
             },
             dataType: "html",
@@ -290,19 +294,19 @@
             }
         });
     }
-    function confirmdDitinguished() {
+    function confirmdDitinguished(item) {
+        item=item.id
         var path = $("#" + item).attr("data-distinguished-path");
-        alert(path);
-
-
+        var column = $("#" + item).attr("data-column");
+        var distinguished = $("#" + item).attr("data-distinguished");
 
         $.ajax({
             url:  path,
             type: "POST",
             data: {
                 "_token": "{{ csrf_token() }}",
-                currentStatus: currentStatus,
-                dataupdateId: item
+                distinguished: distinguished,
+                column: column
             },
             dataType: "html",
             success: function() {

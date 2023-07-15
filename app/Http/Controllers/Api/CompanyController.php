@@ -29,15 +29,20 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $companies = Company::active()->latest()->get();
+        $companies = Company::active()
+            ->when($request->is_distinguished, function ($q) use ($request) {
+                $q->where('is_distinguished', $request->is_distinguished);
+            })
+            ->latest()
+            ->get();
         return JsonResponse::json('ok', ['data' => AllCompanyResource::collection($companies)]);
     }
 
     public function companyDetail($id)
     {
-        $company = Company::with(['cars','cars.attachments'])->findorfail($id);
+        $company = Company::with(['cars', 'cars.attachments'])->findorfail($id);
         return JsonResponse::json('ok', ['data' => AllCompanyResource::make($company)]);
     }
 
@@ -117,11 +122,10 @@ class CompanyController extends Controller
                 }
                 return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
             } else {
-                return   sendJsonError('company not active',408);
+                return   sendJsonError('company not active', 408);
             }
         } else {
-            return   sendJsonError('email invald',408);
-
+            return   sendJsonError('email invald', 408);
         }
     }
 

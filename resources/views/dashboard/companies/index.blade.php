@@ -36,7 +36,9 @@
                             <?php
                                 $status = $list->status == 0 ? 1 : 0;
                                 $is_distinguished = $list->is_distinguished == 0 ? 1 : 0;
+                                $status_distinguished = $list->is_distinguished == 0 ? 'مميزه' : 'غير مميزة';
                             ?>
+
                             <td>
 
 
@@ -48,13 +50,13 @@
                                     <i class="tf-icons ti ti-mouse"></i>
                                 </button>
 
-                                {{-- <button type="button" onclick="confirmdDitinguished(this)" id=<?php echo $list->id; ?>
-                                    data-column={{ $list->email }} data-distinguished="{{ $list->is_distinguished }}"
-                                    data-update-path="{{ route('company.is-distinguished', $list->id) }}"
-                                    data-update="{{ $list->id }}" title="Change  Status"
+                                <button type="button" onclick="confirmdDitinguished(this)" id=3
+                                    data-column={{ $list->id }} data-distinguished="{{ $is_distinguished }}"
+                                    data-distinguished-path="{{ route('company.is-distinguished', $list->id) }}"
+                                     title="Change  Status"
                                     class="btn btn-icon btn-label-linkedin col-4">
-                                    مميزة
-                                </button> --}}
+                                    {{ $status_distinguished }}
+                                </button>
                                 <a href="{{ route('companies.edit', $list->id) }}" style="margin-left:2px"
                                     class="btn btn-icon btn-label-warning col-4">
                                     <i class="tf-icons ti ti-edit"></i>
@@ -70,6 +72,13 @@
                                     class="btn btn-icon btn-label-danger col-4">
                                     <i class="tf-icons ti ti-trash"></i>
                                 </button> --}}
+                                <button type="button" onclick="confirmDeleted(this)" id=4
+                                data-column-id={{ $list->id }}
+                                data-delete-path="{{ route('companies.destroy', $list->id) }}"
+                                class="btn btn-icon btn-label-danger col-4">
+                                <i class="tf-icons ti ti-trash"></i>
+
+                            </button>
 
                             </td>
 

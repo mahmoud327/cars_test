@@ -89,8 +89,12 @@ class FeatureListingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function destroy(Request $request)
     {
         //
+        $lsit = FeatureList::find($request->column);
+        $lsit->delete();
+        return 'sucess';
     }
 }

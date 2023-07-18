@@ -32,14 +32,11 @@ class AuthController extends Controller
     {
 
         $credentials = request(['email', 'password']);
-        if (!auth()->attempt($credentials)) {
-
+        $credential2 = request(['phone', 'password']);
+        if (!auth()->attempt($credentials) || !auth()->attempt($credential2)) {
             return sendJsonError('Emailv or Password not correct', 401);
         }
         $user = request()->user();
-
-
-
         return JsonResponse::json('ok', ['data' => UserResource::make($user)]);
     }
 
@@ -155,8 +152,7 @@ class AuthController extends Controller
 
     public function show()
     {
-    $user = User::findorfail(auth()->id());
-    return JsonResponse::json('ok', ['data' => UserResource::make($user)]);
-}
-
+        $user = User::findorfail(auth()->id());
+        return JsonResponse::json('ok', ['data' => UserResource::make($user)]);
+    }
 }

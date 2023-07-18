@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Resources;
-
 use Illuminate\Http\Resources\Json\JsonResource;
-
 class CarResource extends JsonResource
 {
     /**
@@ -25,14 +23,13 @@ class CarResource extends JsonResource
             'mileage' => $this->mileage,
             'engine_size' => $this->engine_size,
             'status' => $this->status,
-            'user'=>DetailUserResource::make($this->whenLoaded('user')),
-            'company'=>DetailCompanyResource::make($this->whenLoaded('company')),
+            'user' => DetailUserResource::make($this->whenLoaded('user')),
+            'company' => DetailCompanyResource::make($this->whenLoaded('company')),
             'vin_number' => $this->vin_number,
             'tags' => TagResource::collection($this->tags ?? []),
             'attachments' => AttachmentResource::collection($this->attachments ?? []),
             'features' =>  FeatureCarResource::collection($this->features ?? []),
             'show_url' => route('cars.show', ['car' => $this->id]),
-
         ];
     }
 }

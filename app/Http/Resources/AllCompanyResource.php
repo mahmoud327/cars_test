@@ -24,6 +24,7 @@ class AllCompanyResource extends JsonResource
             'city_id' => $this->city_id,
             'city_name' => optional($this->city)->title,
             'image' => $this->image_path,
+            'is_distinguished'=>$this->is_distinguished,
             'cars' => CarResource::collection($this->cars ?? []),
             'featureImage' => $this->feature_image_path,
 

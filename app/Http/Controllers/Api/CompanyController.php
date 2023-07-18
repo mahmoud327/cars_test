@@ -113,7 +113,7 @@ class CompanyController extends Controller
     {
 
 
-        $company = Company::where('email', $request->email)->first();
+        $company = Company::where('email', $request->email)->orwhere('phone',$request->phone)->first();
         if ($company) {
 
             if ($company->status) {

@@ -51,31 +51,20 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
     Route::get('tags', [TagController::class, 'index']);
     Route::apiResource('cars', CarController::class);
     Route::group(['middleware' => ['auth:api']], function () {
-
         Route::post('user/cars', [UserCarController::class, 'store']);
         Route::get('user/cars', [UserCarController::class, 'index']);
-
         Route::post('user', [AuthController::class, 'show']);
-
         Route::get('car/{car_id}/active', [UserCarController::class, 'active']);
-
         Route::get('mywishlist', [WishlistUserController::class, 'index']);
         Route::post('wishlist', [WishlistUserController::class, 'wishlist']);
         Route::post('not-wishlist', [WishlistUserController::class, 'notWishlist']);
     });
-
-
     Route::get('companies', [CompanyController::class, 'index']);
     Route::post('company/login', [CompanyController::class, 'login']);
     Route::get('company-details/{id}', [CompanyController::class, 'companyDetail']);
-
-
-
     Route::group(['middleware' => ['auth:company']], function () {
-
         Route::apiResource('company/cars', CompanyCarController::class);
         Route::get('company', [CompanyController::class, 'show']);
-
         Route::get('company/mywishlist', [WishlistCompanyController::class, 'index']);
         Route::post('company/wishlist', [WishlistCompanyController::class, 'wishlist']);
         Route::post('company/not-wishlist', [WishlistCompanyController::class, 'notWishlist']);

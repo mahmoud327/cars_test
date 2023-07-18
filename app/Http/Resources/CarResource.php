@@ -26,7 +26,7 @@ class CarResource extends JsonResource
             'engine_size' => $this->engine_size,
             'status' => $this->status,
             'user'=>DetailUserResource::make($this->whenLoaded('user')),
-            'company'=>AllCompanyResource::make($this->whenLoaded('company')),
+            'company'=>DetailCompanyResource::make($this->whenLoaded('company')),
             'vin_number' => $this->vin_number,
             'tags' => TagResource::collection($this->tags ?? []),
             'attachments' => AttachmentResource::collection($this->attachments ?? []),

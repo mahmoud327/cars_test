@@ -125,7 +125,7 @@ class CompanyController extends Controller
                 return   sendJsonError('company not active', 408);
             }
         } else {
-            return   sendJsonError('email invald', 408);
+            return   sendJsonError('invald account', 408);
         }
     }
 

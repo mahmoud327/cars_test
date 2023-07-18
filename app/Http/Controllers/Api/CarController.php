@@ -75,7 +75,7 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        $car->with('tags', 'features');
+        $car->with(['tags', 'features', 'attachments','company','user']) ;
         return JsonResponse::json('ok', ['data' => new CarResource($car)]);
     }
 

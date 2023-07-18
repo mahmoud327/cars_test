@@ -33,7 +33,7 @@ class UserCarController extends Controller
         ->when($request->status,function($q){
             $q->whereStatus(request()->status);
         })
-        ->with(['tags', 'features','attachments'])
+        ->with(['tags', 'features','attachments','user'])
             ->where('user_id', auth()->id());
         $cars = $this->filter(request(), $cars);
         return JsonResponse::json('ok', ['data' => CarResource::collection($cars->paginate(request()->paginate))]);

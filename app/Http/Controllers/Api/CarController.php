@@ -25,7 +25,7 @@ class CarController extends Controller
     {
         $cars = Car::query()
             ->active()
-            ->with('tags', 'features');
+            ->with(['tags', 'features', 'attachments','company','user']);
         $cars = $this->filter(request(), $cars);
         return JsonResponse::json('ok', ['data' => CarResource::collection($cars->get())]);
     }

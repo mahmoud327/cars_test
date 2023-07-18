@@ -32,7 +32,7 @@ class CompanyCarController extends Controller
             $q->whereStatus(request()->status);
         })
 
-            ->with('tags', 'features', 'attachments')
+            ->with(['tags', 'features', 'attachments','company'])
             ->where('company_id', auth()->guard('company')
                 ->id())
             ->latest();

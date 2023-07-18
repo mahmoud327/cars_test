@@ -34,6 +34,14 @@ class Car extends Model
     {
         return $this->belongsTo(Category::class, 'model_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id');
+    }
     public function features()
     {
         return $this->belongsToMany(Feature::class, 'car_feature', 'car_id', 'feature_id')->withPivot('feature_list_id');

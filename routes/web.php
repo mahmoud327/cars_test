@@ -49,6 +49,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('company/{id}/distinguished', [CompanyController::class,'distinguished'])
         ->name('company.is-distinguished');
 
+        Route::post('car/{id}/distinguished', [CarController::class,'distinguished'])
+        ->name('car.distinguished');
+
+
 
         Route::resource('categories', CategoryController::class);
         Route::resource('banners', BannerController::class);

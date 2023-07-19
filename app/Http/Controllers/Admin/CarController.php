@@ -98,8 +98,8 @@ class CarController extends Controller
     public function destroy(Request $request)
     {
         //
-       $car= Car::find($request->column);
-       $car->delete();
+        $car = Car::find($request->column);
+        $car->delete();
         return 'sucess';
     }
 
@@ -114,5 +114,14 @@ class CarController extends Controller
         $admin->status = $request->currentStatus;
         $admin->save();
         return 'sucess';
+    }
+
+    // approve post
+    public function distinguished(Request $request,$id)
+    {
+        $car = Car::find($id);
+
+        $car->update(['is_distinguished' => $request->distinguished]);
+        return back();
     }
 }

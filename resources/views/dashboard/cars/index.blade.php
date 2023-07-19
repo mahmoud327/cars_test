@@ -31,6 +31,7 @@
                     @foreach ($records as $record)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td>{{ $record->id }}</td>
                             <td>{{ $record->title }}</td>
                             <td>{{ $record->description }}</td>
                             <td>{{ $record->make?->name }}</td>
@@ -43,9 +44,18 @@
                             </td>
                             <?php
                             $status = $record->status == 0 ? 1 : 0;
+                            $is_distinguished = $record->is_distinguished == 0 ? 1 : 0;
+                            $status_distinguished = $record->is_distinguished == 0 ? 'مميزه' : 'غير مميزة';
 
                             ?>
                             <td>
+                                <form action="{{ route('car.distinguished',$record->id) }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-icon btn-label-linkedin col-4">
+                                        {{ $status_distinguished }}
+                                    </button>
+                                    <input type="hidden" name="distinguished" value="{{ $is_distinguished }}">
+                                </form>
 
                                 <button type="button" onclick="confirmStatus(this)" id=<?php echo $record->id; ?>
                                     data-column={{ $record->status }} data-status="{{ $status }}"

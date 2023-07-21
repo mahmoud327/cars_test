@@ -72,12 +72,12 @@ class CompanyController extends Controller
 
         $company = Company::create($request->except(['image', 'featureImage']));
         if ($request->file('image')) {
-            $this->uploadImage('uploads/companies', $request->image);
-            $company->update(['image' => $request->image->hashName()]);
+         $path=   $this->uploadFile('uploads/companies', $request->image);
+            $company->update(['image' => $path]);
         }
         if ($request->file('featureImage')) {
-            $this->uploadImage('uploads/companies', $request->featureImage);
-            $company->update(['featureImage' => $request->image->hashName()]);
+            $path=$this->uploadFile('uploads/companies', $request->featureImage);
+            $company->update(['featureImage' => $path]);
         }
         return JsonResponse::json('ok', ['data' => CompanyResource::make($company)]);
     }
@@ -95,15 +95,14 @@ class CompanyController extends Controller
         if ($request->password) {
             $company->password = bcrypt($request->password);
         }
-
         if ($request->file('image')) {
-            $this->uploadImage('uploads/companies', $request->image);
-            $company->update(['image' => $request->image->hashName()]);
-        }
-        if ($request->file('featureImage')) {
-            $this->uploadImage('uploads/companies', $request->featureImage);
-            $company->update(['featureImage' => $request->image->hashName()]);
-        }
+            $path=   $this->uploadFile('uploads/companies', $request->image);
+               $company->update(['image' => $path]);
+           }
+           if ($request->file('featureImage')) {
+               $path=$this->uploadFile('uploads/companies', $request->featureImage);
+               $company->update(['featureImage' => $path]);
+           }
 
         return sendJsonResponse([], 'updated sucesfuully');
 

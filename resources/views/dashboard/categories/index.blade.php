@@ -68,7 +68,7 @@
                                 </a>
                                 <button type="button" onclick="confirmDeleted(this)" id={{ $record->id }}
                                     data-column-id={{ $record->id }}
-                                    data-delete-path="{{ route('categories.destroy', $record->id) }}"
+                                    data-delete-path="{{ route('categories.destroy',$record->id) }}"
                                     class="btn btn-icon btn-label-danger col-4">
                                     <i class="tf-icons ti ti-trash"></i>
 

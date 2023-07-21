@@ -71,11 +71,11 @@ class CompanyController extends Controller
 
 
         $company = Company::create($request->except(['image', 'featureImage']));
-        if ($request->image) {
+        if ($request->file('image')) {
             $this->uploadImage('uploads/companies', $request->image);
             $company->update(['image' => $request->image->hashName()]);
         }
-        if ($request->featureImage) {
+        if ($request->file('featureImage')) {
             $this->uploadImage('uploads/companies', $request->featureImage);
             $company->update(['featureImage' => $request->image->hashName()]);
         }

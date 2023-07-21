@@ -59,6 +59,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
         Route::post('wishlist', [WishlistUserController::class, 'wishlist']);
         Route::post('not-wishlist', [WishlistUserController::class, 'notWishlist']);
     });
+    Route::post('company', [CompanyController::class, 'store']);
+
     Route::get('companies', [CompanyController::class, 'index']);
     Route::post('company/login', [CompanyController::class, 'login']);
     Route::get('company-details/{id}', [CompanyController::class, 'companyDetail']);
@@ -73,5 +75,4 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
         Route::put('company', [CompanyController::class, 'update']);
     });
 
-    Route::post('company', [CompanyController::class, 'store']);
 });

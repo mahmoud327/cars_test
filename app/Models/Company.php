@@ -47,6 +47,7 @@ class Company extends Authenticatable
         return $this->belongsTo('App\Models\City','city_id');
     }
 
+
     /*
      * ----------------------------------------------------------------- *
      * ----------------------------- Acessores ---------------------------- *
@@ -63,7 +64,7 @@ class Company extends Authenticatable
      }
      public function getFeatureImagePathAttribute()
      {
-         return $this->image ? asset('uploads/companies/' .$this->image) : asset('uploads/default.jpeg');
+         return $this->featureImage ? asset('uploads/companies/' .$this->featureImage) : asset('uploads/default.jpeg');
 
      }
 

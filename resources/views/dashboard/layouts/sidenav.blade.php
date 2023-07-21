@@ -142,12 +142,12 @@
                 <div>Features</div>
             </a>
         </li>
-        <li class="menu-item">
+        {{-- <li class="menu-item">
             <a href="{{ route('tags.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-users"></i>
                 <div>Tags</div>
             </a>
-        </li>
+        </li> --}}
 
 
 

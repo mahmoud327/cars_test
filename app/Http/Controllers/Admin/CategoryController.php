@@ -77,7 +77,6 @@ class CategoryController extends Controller
 
     public function destroy(Request $request)
     {
-        //
         $car = Category::find($request->column);
         $car->delete();
         return 'sucess';

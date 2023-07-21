@@ -17,7 +17,7 @@ class FeatureListingController extends Controller
     public function index(Feature $feature)
 
     {
-        $records = $feature->listings()->get();
+        $records = $feature->listings()->paginate();
         return view('dashboard.features.listings.index', compact('records' , 'feature'));
     }
 

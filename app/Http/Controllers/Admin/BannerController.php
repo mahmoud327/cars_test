@@ -27,7 +27,7 @@ class BannerController extends Controller
 
 
         $records = Banner::latest()
-            ->paginate(10);
+            ->paginate();
 
         return view('dashboard.banners.index', compact('records'));
     }

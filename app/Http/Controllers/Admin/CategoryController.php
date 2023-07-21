@@ -32,9 +32,9 @@ class CategoryController extends Controller
     {
         if (request('parent_id')) {
             $category = Category::findorfail(request('parent_id'));
-            $records = $category->children()->latest()->paginate(10);
+            $records = $category->children()->latest()->paginate();
         } else {
-            $records = Category::where('type', $this->type)->latest()->paginate(10);
+            $records = Category::where('type', $this->type)->latest()->paginate();
         }
         return $this->view('index', compact('records'));
     }

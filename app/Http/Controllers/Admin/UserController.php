@@ -36,7 +36,7 @@ class UserController extends Controller
 
         $users = User::query()
             ->latest()
-            ->paginate(10);
+            ->paginate();
 
         return view('dashboard.users.index', compact('users'));
     }

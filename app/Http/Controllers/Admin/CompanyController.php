@@ -38,7 +38,7 @@ class CompanyController extends Controller
 
         $companies = Company::query()
             ->latest()
-            ->paginate(10);
+            ->paginate();
         return view('dashboard.companies.index', compact('companies'));
     }
     // to show all accounts

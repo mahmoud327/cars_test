@@ -64,7 +64,7 @@ class Company extends Authenticatable
      }
      public function getFeatureImagePathAttribute()
      {
-         return $this->featureImage ? asset('uploads/companies/' .$this->featureImage) : asset('uploads/default.jpeg');
+         return $this->featureImage ? asset('uploads/companies/'.$this->featureImage) : asset('uploads/default.jpeg');
 
      }
 

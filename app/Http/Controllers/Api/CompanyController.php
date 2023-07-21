@@ -112,8 +112,14 @@ class CompanyController extends Controller
     public function login(AuthRequest $request)
     {
 
+        $company = new Company();
+        if($request->phone){
+           $company=  $company->where('phone',$request->phone)->first();
+        }
+        else{
+             $company=$company->where('email',$request->email)->first();
 
-        $company = Company::where('email', $request->email)->orwhere('phone',$request->phone)->first();
+        }
         if ($company) {
 
             if ($company->status) {

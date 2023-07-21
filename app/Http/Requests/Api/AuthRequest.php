@@ -35,7 +35,7 @@ class AuthRequest extends FormRequest
         return [
 
                          'email'      => 'nullable',
-                        'password'    => 'required|min:8',
+                        'password'    => 'required',
                ];
     }
 }

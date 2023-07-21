@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="{{ route('dashboard.index') }}" class="app-brand-link">
+        <a href="" class="app-brand-link">
 
             <img width="100" src="{{ asset('logo/4.png') }}" alt="">
 
@@ -18,10 +18,10 @@
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
         <li class="menu-item">
-            <a href="{{ route('dashboard.index') }}" class="menu-link">
+            {{-- <a href="{{ route('dashboard.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-dashboard"></i>
                 <div>Dashboard</div>
-            </a>
+            </a> --}}
         </li>
 
         <!-- Layouts -->

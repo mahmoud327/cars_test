@@ -25,7 +25,7 @@ class CarController extends Controller
     {
         $cars = Car::query()
             ->active()
-            ->with(['tags', 'features', 'attachments', 'company', 'user'])
+            ->with(['features', 'attachments', 'company', 'user','tags'])
             ->orderby('is_distinguished', 'desc');
 
         $cars = $this->filter(request(), $cars);

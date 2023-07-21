@@ -27,6 +27,7 @@ class CarResource extends JsonResource
             'company' => DetailCompanyResource::make($this->whenLoaded('company')),
             'vin_number' => $this->vin_number,
             'tags' => TagResource::collection($this->tags ?? []),
+            'is_distinguished' => $this->is_distinguished,
             'attachments' => AttachmentResource::collection($this->attachments ?? []),
             'features' =>  FeatureCarResource::collection($this->features ?? []),
             'show_url' => route('cars.show', ['car' => $this->id]),

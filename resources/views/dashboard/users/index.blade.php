@@ -34,7 +34,7 @@
                             </td>
                             <td>
 
-                             
+
                                 <a href="{{ route('users.edit', $list->id) }}" style="margin-left:2px"
                                     class="btn btn-icon btn-label-warning col-4">
                                     <i class="tf-icons ti ti-edit"></i>
@@ -44,7 +44,7 @@
                                     <i class="tf-icons ti ti-eye"></i>
                                 </a>
 
-                                <button type="button" onclick="confirmDeleted(this)" id=2
+                                <button type="button" onclick="confirmDeleted(this)" id={{$list->id}}
                                 data-column-id={{ $list->id }}
                                 data-delete-path="{{ route('users.destroy', $list->id) }}"
                                 class="btn btn-icon btn-label-danger col-4">

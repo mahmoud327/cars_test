@@ -31,16 +31,10 @@
                             <td>{{ $list->full_name }}</td>
                             <td>{{ $list->email }}</td>
                             <td>{{ $list->phone }}</td>
-                            <td><span class="badge bg-label-<?php echo $list['is_active'] == 0 ? 'warning' : 'success'; ?>"><?php echo $list['isActive'] == 0 ? 'Awaitong Approvel' : 'Active'; ?></span>
                             </td>
                             <td>
 
-                                <button type="button" onclick="confirmStatus(this)" id="status<?php echo $list['userId']; ?>"
-                                    data-column="userId" data-table="mstcompanies" data-status="<?php echo $list['isActive']; ?>"
-                                    data-update-path="admin/User/updateStatus" data-update="<?php echo $list['userId']; ?>"
-                                    title="Change  Status" class="btn btn-icon btn-label-linkedin col-4">
-                                    <i class="tf-icons ti ti-mouse"></i>
-                                </button>
+                             
                                 <a href="{{ route('users.edit', $list->id) }}" style="margin-left:2px"
                                     class="btn btn-icon btn-label-warning col-4">
                                     <i class="tf-icons ti ti-edit"></i>

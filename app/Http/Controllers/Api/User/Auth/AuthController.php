@@ -30,10 +30,9 @@ class AuthController extends Controller
 
     public function login(AuthRequest $request)
     {
-        $credentials = request(['email', 'password']);
-        $credential2 = request(['phone', 'password']);
-
-        if (!auth()->attempt($credentials) || !auth()->attempt($credential2)) {
+        $credentials=$request->phone? request(['phone', 'password']): request(['email', 'password']);
+    
+        if (!auth()->attempt($credentials) ) {
             return sendJsonError('Emailv or Password not correct', 401);
         }
         $user = request()->user();

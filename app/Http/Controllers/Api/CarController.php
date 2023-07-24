@@ -8,6 +8,7 @@ use App\Models\Car;
 use App\Services\AttachmentService;
 use ArinaSystems\JsonResponse\Facades\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
@@ -23,11 +24,18 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::query()
-            ->active()
+
+        $cars = (new Car())
             ->with(['features', 'attachments', 'company', 'user','tags'])
+            ->active()
             ->orderby('is_distinguished', 'desc');
 
+
+        if (Auth::guard('company')->user()) {
+            $cars = $cars;
+        } else {
+            $cars = $cars->where('user_id', null);
+        }
         $cars = $this->filter(request(), $cars);
         return JsonResponse::json('ok', ['data' => CarResource::collection($cars->get())]);
     }

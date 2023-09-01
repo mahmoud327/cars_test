@@ -41,6 +41,7 @@ class UserCarController extends Controller
     public function allCar(Request $request)
     {
         $cars = Car::query()
+        ->where('company_id',null)
         ->with(['tags', 'features','attachments','user']);
         $cars = $this->filter(request(), $cars);
         return JsonResponse::json('ok', ['data' => CarResource::collection($cars->paginate(request()->paginate))]);

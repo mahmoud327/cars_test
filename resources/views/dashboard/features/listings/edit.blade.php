@@ -16,7 +16,7 @@
                         @foreach (config('translatable.locales') as $locale)
                             <div class="mb-3">
                                 <label class="form-label" for="{{ $locale . '[name]' }}"> Name {{ $locale }}</label>
-                                <input type="text" class="form-control" id="{{ $locale . '[name]' }}" value="{{ $featureList->translate($locale)->name }}"
+                                <input type="text" class="form-control" id="{{ $locale . '[name]' }}" value="{{ optional($featureList->translate($locale))->name }}"
                                     name="{{ $locale . '[name]' }}" required />
 
                             </div>

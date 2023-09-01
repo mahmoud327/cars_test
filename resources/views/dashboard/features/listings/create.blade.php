@@ -9,7 +9,7 @@
                 enctype="multipart/form-data">
                 @csrf
 
-                <h5 class="card-header">Add Lisitng For {{$feature->translate('en')->name}}</h5>
+                <h5 class="card-header">Add Lisitng For {{optional($feature->translate('en'))->name}}</h5>
                 <div class="card-body">
                     <form class="needs-validation" novalidate>
                         @foreach (config('translatable.locales') as $locale)

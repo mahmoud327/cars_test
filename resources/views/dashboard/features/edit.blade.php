@@ -24,6 +24,15 @@
 
 
 
+                        <div class="mb-3">
+                            <label class="form-label" for=""> position</label>
+                            <input type="number" class="form-control"
+                                name="position" required  value="{{$feature->position }}"/>
+
+                        </div>
+
+
+
 
 
 

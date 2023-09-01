@@ -33,7 +33,7 @@
 
 
                             @foreach (config('translatable.locales') as $locale)
-                                <td>{{ optinal($record->translate($locale))->name }}</td>
+                                <td>{{ optional($record->translate($locale))->name }}</td>
                             @endforeach
 
 

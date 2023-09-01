@@ -35,7 +35,7 @@ class CompanyController extends Controller
             ->when($request->is_distinguished, function ($q) use ($request) {
                 $q->where('is_distinguished', $request->is_distinguished);
             })
-            ->orderby('is_distinguished','asc')
+            ->orderby('is_distinguished','desc')
             ->get();
         return JsonResponse::json('ok', ['data' => AllCompanyResource::collection($companies)]);
     }

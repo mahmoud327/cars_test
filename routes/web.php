@@ -53,6 +53,12 @@ if ($guzzleResponse->getStatusCode() == 200) {
                 'locale'=>'en'
 
             ]);
+            TranslationCategory::create([
+                'category_id'=>$category->id,
+                'name'=>$id,
+                'locale'=>'ar'
+
+            ]);
         }
         return $ids;
     }

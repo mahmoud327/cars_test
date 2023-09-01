@@ -12,7 +12,7 @@ use ArinaSystems\JsonResponse\Facades\JsonResponse;
 class FeatureController extends Controller
 {
     public function index(){
-        $features=Feature::with('listings')->has('listings')->orderby('position','desc')->get();
+        $features=Feature::with('listings')->has('listings')->orderby('position','asc')->get();
         return JsonResponse::json('ok', ['data' => FeatureResource::collection($features)]);
 
 

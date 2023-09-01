@@ -49,7 +49,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
 
     Route::apiResource('banners', BannerController::class);
     Route::get('categories', [CategoryController::class, 'index']);
-    Route::get('features', [FeatureController::class, 'index']);
+    Route::get('models/{make_id}', [CategoryController::class, 'models']);
+
     Route::get('features', [FeatureController::class, 'index']);
     Route::get('tags', [TagController::class, 'index']);
     Route::apiResource('cars', CarController::class);

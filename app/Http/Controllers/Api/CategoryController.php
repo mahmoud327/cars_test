@@ -21,17 +21,20 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories =Category::where('type', request('type'));
-        if(request('count')){
+        $categories = Category::where('type', request('type'));
+        if (request('count')) {
             $categories = $categories->take(request('count'));
-
         }
 
         return JsonResponse::json('ok', ['data' => CategoryResource::collection($categories->get())]);
     }
+    public function models($make_id)
+    {
+        $categories = Category::whereParentId($make_id)
+            ->latest()
+            ->get();
 
 
-
-
-
+        return JsonResponse::json('ok', ['data' => CategoryResource::collection($categories)]);
+    }
 }

@@ -47,6 +47,53 @@
                                     <span>{{ $company->phone }}</span>
                                 </li>
 
+                                <li><span class="badge bg-label-<?php echo $company->status == 0 ? 'warning' : 'success'; ?>"><?php echo $company->status == 0 ? 'Awaitong Approvel' : 'Active'; ?></span>
+                                </td>
+                                <?php
+                                    $status = $company->status == 0 ? 1 : 0;
+                                    $is_distinguished = $company->is_distinguished == 0 ? 1 : 0;
+                                    $status_distinguished = $company->is_distinguished == 0 ? 'مميزه' : 'غير مميزة';
+                                ?>
+
+                                <li>
+
+
+                                    <button type="button" onclick="confirmStatus(this)" id=<?php echo $company->id; ?>
+                                        data-column={{ $company->email }} data-status="{{ $status }}"
+                                        data-update-path="{{ route('company.is-active', $company->id) }}"
+                                        data-update="{{ $company->id }}" title="Change  Status"
+                                        class="btn btn-icon btn-label-linkedin col-4">
+                                        <i class="tf-icons ti ti-mouse"></i>
+                                    </button>
+
+                                    <button type="button" onclick="confirmdDitinguished(this)" id=3
+                                        data-column={{ $company->id }} data-distinguished="{{ $is_distinguished }}"
+                                        data-distinguished-path="{{ route('company.is-distinguished', $company->id) }}"
+                                         title="Change  Status"
+                                        class="btn btn-icon btn-label-linkedin col-4">
+                                        {{ $status_distinguished }}
+                                    </button>
+                                    <a href="{{ route('companies.edit', $company->id) }}" style="margin-left:2px"
+                                        class="btn btn-icon btn-label-warning col-4">
+                                        <i class="tf-icons ti ti-edit"></i>
+                                    </a>
+                                   
+
+                                    {{-- <button type="button" onclick="confirmDelete(this)" id="{{ $list->id }}"
+                                        data-column="userId" data-delete-path="companies/destroy"
+                                        data-delete="{{$list->id}}" style="margin-left:2px"
+                                        class="btn btn-icon btn-label-danger col-4">
+                                        <i class="tf-icons ti ti-trash"></i>
+                                    </button> --}}
+                                    <button type="button" onclick="confirmDeleted(this)" id=4
+                                        data-column-id={{ $company->id }}
+                                        data-delete-path="{{ route('companies.destroy', $company->id) }}"
+                                        class="btn btn-icon btn-label-danger col-4">
+                                        <i class="tf-icons ti ti-trash"></i>
+
+                                    </button>
+
+
 
 
                                 {{-- <li class="mb-2 pt-1">
@@ -64,6 +111,7 @@
                                 </label>
 
                             </li> --}}
+
                             </ul>
                             {{-- <div class="d-flex justify-content-center">
                             <a href="<?php echo base_url('admin/User/editCompany/' . $this->encrypt->encode($profile['userId'])); ?>" class="btn btn-primary me-3" data-bs-target="#editUser"
@@ -173,7 +221,7 @@
                                 </table>
                             </div>
                         </div>
-                   
+
                     </div>
                 </div>
                 <!-- /Project table -->

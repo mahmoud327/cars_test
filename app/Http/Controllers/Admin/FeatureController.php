@@ -35,7 +35,7 @@ class FeatureController extends Controller
      */
     public function index()
     {
-        $records = $this->model->latest()->paginate();
+        $records = $this->model->orderby('position','desc')->get();
         return $this->view('index', compact('records'));
     }
     /**

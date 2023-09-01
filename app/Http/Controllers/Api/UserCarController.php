@@ -38,6 +38,13 @@ class UserCarController extends Controller
         $cars = $this->filter(request(), $cars);
         return JsonResponse::json('ok', ['data' => CarResource::collection($cars->paginate(request()->paginate))]);
     }
+    public function allCar(Request $request)
+    {
+        $cars = Car::query()
+        ->with(['tags', 'features','attachments','user']);
+        $cars = $this->filter(request(), $cars);
+        return JsonResponse::json('ok', ['data' => CarResource::collection($cars->paginate(request()->paginate))]);
+    }
 
     /**
      * Show the form for creating a new resource.

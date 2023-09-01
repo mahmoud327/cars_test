@@ -46,12 +46,15 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
     // Route::apiResource('categories', CatgoryController::class);
     // Route::apiResource('brands',    BrandController::class);
     Route::apiResource('cities', CityController::class);
+    Route::get('users/cars', [UserCarController::class,'allCar']);
+
     Route::apiResource('banners', BannerController::class);
     Route::get('categories', [CategoryController::class, 'index']);
     Route::get('features', [FeatureController::class, 'index']);
     Route::get('features', [FeatureController::class, 'index']);
     Route::get('tags', [TagController::class, 'index']);
     Route::apiResource('cars', CarController::class);
+
     Route::group(['middleware' => ['auth:api']], function () {
         Route::post('user/cars', [UserCarController::class, 'store']);
         Route::get('user/cars', [UserCarController::class, 'index']);

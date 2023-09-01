@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\User\Auth\AuthController;
 use App\Http\Controllers\Api\UserCarController;
 use App\Http\Controllers\Api\WishlistCompanyController;
 use App\Http\Controllers\Api\WishlistUserController;
+use App\Models\Car;
 use App\Models\Setting;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
@@ -38,7 +39,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
 
         $setting->increment('views');
         return sendJsonResponse([
-            'views' => $setting->views
+            'views' => $setting->views,
+            'cars' => Car::count()
         ]);
     });
     // Route::apiResource('categories', CatgoryController::class);

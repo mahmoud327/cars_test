@@ -20,6 +20,6 @@ class Setting extends Model
         'inst_link',
         'whatsapp_link',
         'skype_link',
-        'views'
+        'terms_condition'
     ];
 }

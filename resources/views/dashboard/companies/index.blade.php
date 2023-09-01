@@ -72,7 +72,13 @@
                                     class="btn btn-icon btn-label-danger col-4">
                                     <i class="tf-icons ti ti-trash"></i>
                                 </button> --}}
-                               
+                                <button type="button" onclick="confirmDeleted(this)" id=4
+                                    data-column-id={{ $list->id }}
+                                    data-delete-path="{{ route('companies.destroy', $list->id) }}"
+                                    class="btn btn-icon btn-label-danger col-4">
+                                    <i class="tf-icons ti ti-trash"></i>
+
+                                </button>
 
                             </td>
 

@@ -77,7 +77,7 @@
                                         class="btn btn-icon btn-label-warning col-4">
                                         <i class="tf-icons ti ti-edit"></i>
                                     </a>
-                                   
+
 
                                     {{-- <button type="button" onclick="confirmDelete(this)" id="{{ $list->id }}"
                                         data-column="userId" data-delete-path="companies/destroy"
@@ -85,14 +85,7 @@
                                         class="btn btn-icon btn-label-danger col-4">
                                         <i class="tf-icons ti ti-trash"></i>
                                     </button> --}}
-                                    <button type="button" onclick="confirmDeleted(this)" id=4
-                                        data-column-id={{ $company->id }}
-                                        data-delete-path="{{ route('companies.destroy', $company->id) }}"
-                                        class="btn btn-icon btn-label-danger col-4">
-                                        <i class="tf-icons ti ti-trash"></i>
-
-                                    </button>
-
+                      
 
 
 

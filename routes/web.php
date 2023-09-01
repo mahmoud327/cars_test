@@ -10,6 +10,9 @@ use App\Http\Controllers\Admin\FeatureListingController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Models\Category;
+use App\Models\Translation\Category as TranslationCategory;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +25,43 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
+use GuzzleHttp\Client;
 
+ Route::get('test',function(){
+
+
+    $client = new Client();
+
+    $guzzleResponse = $client->get(
+        'https://sayartii.com/carmakes'
+    );
+if ($guzzleResponse->getStatusCode() == 200) {
+    $response = json_decode($guzzleResponse->getBody(),true);
+
+
+
+    // Assuming the API response is a JSON array with IDs.
+    if (is_array($response)) {
+        $ids = array_column($response, 'opts/car.make');
+        foreach($ids as $id){
+           $category= Category::create([
+                'type'=> 'make'
+            ]);
+            TranslationCategory::create([
+                'category_id'=>$category->id,
+                'name'=>$id,
+                'locale'=>'en'
+
+            ]);
+        }
+        return $ids;
+    }
+    // return $response;
+}
+
+
+
+});
 Route::redirect('/', 'admin/login-page');
 
 Auth::routes();
@@ -60,5 +99,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('pages',PageController::class);
         Route::resource('cities',CityController::class);
         Route::resource('cars', CarController::class);
+
+
     });
 });

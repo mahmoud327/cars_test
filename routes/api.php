@@ -43,8 +43,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['lang']], function () {
             'cars' => Car::count()
         ]);
     });
-    // Route::apiResource('categories', CatgoryController::class);
-    // Route::apiResource('brands',    BrandController::class);
+
     Route::apiResource('cities', CityController::class);
     Route::get('users/cars', [UserCarController::class,'allCar']);
 
